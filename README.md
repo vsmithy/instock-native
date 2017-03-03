@@ -7,6 +7,15 @@ This app is my TodoMVC while I dig into react-native.
  * Two sections - Inventory and ShoppingList
  * Firebase is used for the data and authentication
  * I focused on web and android because I don't have any iOS devices to test on
+ * To use, just add your firebase info. My directory structure is:
+ 
+ ```
+ instock 
+    Inventory
+       items
+    ShoppingList
+       items
+ ```
 
 ##Changes to come...
  * I will add headers that filter the ListView components onPress
