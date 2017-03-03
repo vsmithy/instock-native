@@ -3,6 +3,10 @@
 
 This app is my TodoMVC while I dig into react-native.
 
+Screens:
+![screenshot](/screen1.png "Inventory") ![screenshot](/screen2.png "Delete Mode") ![screenshot](/screen3.png "ShoppingList")
+
+
 ##Overview / Notes
  * Two sections - Inventory and ShoppingList
  * Firebase is used for the data and authentication
