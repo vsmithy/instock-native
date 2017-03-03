@@ -4,7 +4,7 @@
 This app is my TodoMVC while I dig into react-native.
 
 Screens:
-![screenshot](/screen1.png "Inventory") ![screenshot](/screen2.png "Delete Mode") ![screenshot](/screen3.png "ShoppingList")
+![screenshot](/screen1.PNG "Inventory") ![screenshot](/screen2.PNG "Delete Mode") ![screenshot](/screen3.PNG "ShoppingList")
 
 
 ##Overview / Notes
