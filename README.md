@@ -21,7 +21,15 @@ Now you can have your shopping list, kitchen inventory, meal planning, and recip
 * React-Native-Calendar
 * Remote-Redux-Devtools
 * Spoontacular Recipe Api: https://market.mashape.com/spoonacular/recipe-food-nutrition
- 
+
+## Requirements (from wife) went something like...
+* ...hey  babe you should make an app so that we always know if we are out of stuff when grocery shopping...
+* ...hey babe can you add a shopping list on here, and when we are out of stuff we should be able to press a button to add it to our shopping list
+* ...hey babe can you add a meal-planning section so we can plan out what we want for the week
+* ...hey babe when I buy something and check it off of my shopping list, it should ask me if i want to refill my inventory of it
+* ...hmmm...i should be able to browse recipes if idk what i want to eat
+* ...you know, I should be able to browse recipes based on what stuff we already have in our kitchen
+
 ## To Use
 * Create an Expo / React-Native Project
 * Copy and paste the files in this repo into your project folder
