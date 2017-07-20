@@ -28,5 +28,5 @@ Now you can do your shopping list, kitchen inventory, meal planning, and recipe 
 
 Screens:
 ![screenshot](/Screenshots/Screenshot_20170720-130147.png "Inventory") ![screenshot](/Screenshots/Screenshot_20170720-130204.png "Shopping") ![screenshot](/Screenshots/Screenshot_20170720-130233.png "Meal Planning")
-![screenshot](/Screenshots/Screenshot_20170720-130147.png "Inventory") ![screenshot](/Screenshots/Screenshot_20170720-130317.png "Shopping") ![screenshot](/Screenshots/Screenshot_20170720-130330.png "Meal Planning")
-![screenshot](/Screenshots/Screenshot_20170720-130343.png "Inventory") 
+![screenshot](/Screenshots/Screenshot_20170720-130147.png "Weekly Meals") ![screenshot](/Screenshots/Screenshot_20170720-130317.png "Recipes") ![screenshot](/Screenshots/Screenshot_20170720-130330.png "Recipe Search Results")
+![screenshot](/Screenshots/Screenshot_20170720-130343.png "Recipe Details") 
