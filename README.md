@@ -2,10 +2,6 @@
 
 Now you can do your shopping list, kitchen inventory, meal planning, and recipe searching all in one place.
 
-Screens:
-![screenshot](/Screenshots/Screenshot_20170720-130147.png "Inventory") ![screenshot](/Screenshots/Screenshot_20170720-130204.png "Shopping") ![screenshot](/Screenshots/Screenshot_20170720-130219.png "Meal Planning")
-
-
 ##Features:
  * Four sections - Inventory, Shopping, Meal Planning and Recipe Browse
  * Add items you have run out of directly from your inventory list to your shopping list
@@ -29,3 +25,8 @@ Screens:
  * Create an Expo / React-Native Project
  * Copy and paste the files in this repo into your project folder
  * Add your own api key (spoontacular api from Mashape.com)
+
+Screens:
+![screenshot](/Screenshots/Screenshot_20170720-130147.png "Inventory") ![screenshot](/Screenshots/Screenshot_20170720-130204.png "Shopping") ![screenshot](/Screenshots/Screenshot_20170720-130233.png "Meal Planning")
+![screenshot](/Screenshots/Screenshot_20170720-130147.png "Inventory") ![screenshot](/Screenshots/Screenshot_20170720-130317.png "Shopping") ![screenshot](/Screenshots/Screenshot_20170720-130330.png "Meal Planning")
+![screenshot](/Screenshots/Screenshot_20170720-130343.png "Inventory") 
