@@ -1,24 +1,34 @@
 {
-  "name": "instock",
-  "version": "0.0.1",
+  "name": "Instock",
+  "version": "2.0.0",
+  "description": "An app that allows you to keep track of your food inventory",
+  "author": "vsmithy",
   "private": true,
+  "main": "main.js",
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
-  },
-  "dependencies": {
-    "firebase": "^3.6.9",
-    "react": "~15.4.0",
-    "react-native": "0.41.2",
-    "react-native-vector-icons": "^4.0.0"
-  },
-  "devDependencies": {
-    "babel-jest": "19.0.0",
-    "babel-preset-react-native": "1.9.1",
-    "jest": "19.0.0",
-    "react-test-renderer": "~15.4.0"
+    "test": "node node_modules/jest/bin/jest.js"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-navigation)"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "expo": "17.0.0",
+    "react": "16.0.0-alpha.6",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz",
+    "react-native-calendar": "^0.12.2",
+    "react-navigation": "^1.0.0-beta.11",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-navigation": "^1.0.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "jest-expo": "^1.0.2",
+    "remote-redux-devtools": "^0.5.0"
   }
 }

@@ -1,33 +1,34 @@
-# instock-native - a kitchen inventory and shopping list app
+# instock - a kitchen inventory and meal planning app
 
+Now you can have your shopping list, kitchen inventory, meal planning, and recipe searching all in one place.
 
-This app is my TodoMVC while I dig into react-native.
-
-Screens:
-![screenshot](/screen1.PNG "Inventory") ![screenshot](/screen2.PNG "Delete Mode") ![screenshot](/screen3.PNG "ShoppingList")
-
-
-##Overview / Notes
- * Two sections - Inventory and ShoppingList
- * Firebase is used for the data and authentication
- * I focused on web and android because I don't have any iOS devices to test on
- * To use, just add your firebase info. My directory structure is:
+## Features
+* Four sections - Inventory, Shopping, Meal Planning and Recipe Browse
+* Add items directly from your inventory list to your shopping list when you run out
+* Replenish inventory list items after you go shopping
+* Plan meals for any day of the week, and browse recipes for inspiration
+* Add the recipes you like to your favorites list
+* Add missing recipe ingredients directly to your shopping list
  
- ```
- instock 
-    Inventory
-       items
-    ShoppingList
-       items
- ```
+## Tools and Libraries Used
+* React
+* React-Native
+* Redux
+* Redux-Thunk
+* Axios
+* Expo
+* React-Navigation
+* React-Native-Calendar
+* Remote-Redux-Devtools
+* Spoontacular Recipe Api: https://market.mashape.com/spoonacular/recipe-food-nutrition
+ 
+## To Use
+* Create an Expo / React-Native Project
+* Copy and paste the files in this repo into your project folder
+* Add your own api key (spoontacular api from Mashape.com)
 
-##Changes to come...
- * I will add headers that filter the ListView components onPress
- * There is a limit to the number of items rendered, so I will dig into the react-native docs and fix that
 
-##Things I would do for this if I had time...
- * Add a cancel button to the delete mode/menu
- * When you start editing something and close and reopen the app - if you then save changes without modifying your entry the db saves the placeholder text
- * Remove any unused, commented code and unneeded console.logging, etc
- * I would like to add a feature that searches the internet for recipes based on what we have "in stock"
- * I didn't focus on performance or leveraging as many of the lifecycle methods as I should have
+## Screens
+
+![screenshot](/Screenshots/Screenshot_20170720-130147.png "Inventory")  ![screenshot](/Screenshots/Screenshot_20170720-130204.png "Shopping")  ![screenshot](/Screenshots/Screenshot_20170720-130219.png "Weekly Meals")  ![screenshot](/Screenshots/Screenshot_20170720-130233.png "Meal Planning")
+![screenshot](/Screenshots/Screenshot_20170720-130317.png "Recipes")  ![screenshot](/Screenshots/Screenshot_20170720-130330.png "Recipe Search Results")  ![screenshot](/Screenshots/Screenshot_20170720-130343.png "Recipe Details") 

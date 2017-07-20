@@ -1,49 +1,40 @@
-import React, { Component } from 'react'
-import { Text, View, Button, StyleSheet,TouchableHighlight } from 'react-native'
-
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, {Component, PropTypes} from 'react'
+import { View, Dimensions, TouchableHighlight, Text, StyleSheet } from 'react-native'
 
 export default class Header extends Component {
-  constructor(){
-      super()
+  
+  static propTypes = {
+    sortInvName: PropTypes.func.isRequired,
+    sortInvAmount: PropTypes.func.isRequired,
+  }//proptypes
 
-      this.onButtonPress = this.onButtonPress.bind(this)
-  }//constructor
-
-
-  onButtonPress(){
-      this.props.navigator.push({
-          pg: 'ShoppingList'
-      })
-  }//onButtonPress
-
-  render() {
-    const cartIcon = (<Icon name="cart-plus" size={25} color="#FFF" />)
+  render(){
     return (
-      <View style={styles.head} >
-        <Text style={styles.txt}>Inventory</Text>
-        <TouchableHighlight onPress={this.onButtonPress} style={styles.btn} ><Text>{ cartIcon }</Text></TouchableHighlight>
+      <View style={styles.headerBar}>
+        <TouchableHighlight onPress={() => this.props.sortInvName()} style={ styles.headerTextItem } activeOpacity={0.3} underlayColor='rgba(0,0,0,0)'>
+          <Text style={styles.headerText}>Item</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={() => this.props.sortInvAmount()} style={ styles.headerTextAmount }  activeOpacity={0.3} underlayColor='rgba(0,0,0,0)'>
+          <Text style={styles.headerText}>Amount</Text>
+        </TouchableHighlight>
       </View>
     )//return
   }//render
-}//Component
+}//Header
 
+const { width } = Dimensions.get('screen')
 const styles = StyleSheet.create({
-  head: {
+  headerBar: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#b2dfdb'
-  },
-
-  btn: {
-    backgroundColor: '#b2dfdb',
-    paddingRight: 10
-  },
-
-  txt: {
-    fontSize: 30,
-    color: '#fff',
+    backgroundColor: '#efebe9',
+    height: 40,
     paddingLeft: 10
-  }
-})
+  },
+  headerText: { 
+    fontSize: 25
+  },
+  headerTextItem: { width: 0.57*(width-10), paddingLeft: 40 },
+  headerTextAmount: { width: 0.43*(width-10) }
+})//styles
