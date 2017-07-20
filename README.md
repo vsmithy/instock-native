@@ -1,6 +1,6 @@
 # instock - a kitchen inventory and meal planning app
 
-Now you can do your shopping list, kitchen inventory, meal planning, and recipe searching all in one place.
+Now you can have your shopping list, kitchen inventory, meal planning, and recipe searching all in one place.
 
 ## Features
 * Four sections - Inventory, Shopping, Meal Planning and Recipe Browse
