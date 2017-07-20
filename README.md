@@ -33,8 +33,9 @@ Now you can have your shopping list, kitchen inventory, meal planning, and recip
 ## To Use
 * Create an Expo / React-Native Project
 * Copy and paste the files in this repo into your project folder
+* npm install
 * Add your own api key (spoontacular api from Mashape.com)
-
+* Open the project in Expo XDE
 
 ## Screens
 
