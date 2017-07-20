@@ -4,10 +4,11 @@ Now you can have your shopping list, kitchen inventory, meal planning, and recip
 
 ## Features
 * Four sections - Inventory, Shopping, Meal Planning and Recipe Browse
-* Add items you have run out of directly from your inventory list to your shopping list
+* Add items directly from your inventory list to your shopping list when you run out
 * Replenish inventory list items after you go shopping
 * Plan meals for any day of the week, and browse recipes for inspiration
 * Add the recipes you like to your favorites list
+* Add missing recipe ingredients directly to your shopping list
  
 ## Tools and Libraries Used
 * React
