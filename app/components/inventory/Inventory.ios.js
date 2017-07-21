@@ -34,6 +34,18 @@ class Inventory extends Component {
               name: 'peanut butter',
               amount: 'plenty',
               checked: false,
+              id: 2
+            },
+            {
+              name: 'jelly',
+              amount: 'plenty',
+              checked: false,
+              id: 1
+            },
+            {
+              name: 'thyme',
+              amount: 'plenty',
+              checked: false,
               id: 0
             }
           ]
