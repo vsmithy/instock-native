@@ -59,20 +59,7 @@ export default class Shopping extends Component {
         const initialData = await AsyncStorage.getItem('shopping')
         const parsedInitialData = JSON.parse(initialData)
         if(parsedInitialData === null || parsedInitialData.length === 0){
-          initialState = [
-            {
-              'name': "jelly",
-              'completed': false,
-              'deleting': false,
-              'id': 1
-            },
-            {
-              'name': "thyme",
-              'completed': false,
-              'deleting': false,
-              'id': 0
-            }
-          ]
+          initialState = []
         } else { initialState = parsedInitialData }
       }catch(error){
         console.log('ummm shopping error: ' + error)
