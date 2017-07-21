@@ -54,6 +54,10 @@ export default class InputArea extends Component {
               spellCheck={false}
               clearButtonMode='never'
               enablesReturnKeyAutomatically={true}
+              keyboardType='default'
+              onFocus={(text) => this.setState({ text })}
+              editable = {true}
+              style={{height: 40}}
             />
           </View>
           <PickerIOS 
@@ -94,9 +98,9 @@ const styles = StyleSheet.create ({
     paddingBottom:5,
     paddingRight: 10,
     paddingLeft: 10,
-    marginTop: 15,
+    marginTop: 30,
     height: 50, 
-    borderBottomColor: '#80cbc4',
+    borderBottomColor: '#d7ccc8',
     borderRightColor: 'rgba(0,0,0,0)',
     borderBottomWidth: 1,
     borderTopWidth: 0,
@@ -110,11 +114,12 @@ const styles = StyleSheet.create ({
     height: 50, 
     backgroundColor: '#cf2a27', 
     alignItems: 'center', 
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 30,
   },
   input: {
     borderColor: '#ddd', borderWidth: 0, width: 0.62*(width-20), 
   },
-  picker: {width: 0.3*(width-20)},
-  addIcon: { width: 0.08*(width-20) }
+  picker: {width: 0.25*(width-20)},
+  addIcon: { marginLeft: 15 }
 })//styles
