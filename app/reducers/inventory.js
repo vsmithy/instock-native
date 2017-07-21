@@ -1,5 +1,4 @@
 import { AsyncStorage } from 'react-native'
-import inventoryList from '../sample-data/inventoryList'
 import { ADD_INV_ITEM, EDIT_INV_ITEM, DELETE_INV_GROUP, SEND_TO_SHOPPING_LIST, SORT_INV_BY_NAME, SORT_INV_BY_AMOUNT, CHECK_FOR_DELETE, REPLENISH, SET_INITIAL_DATA } from '../actions/constants'
 
 
@@ -111,32 +110,46 @@ export default function inventory(state = [], action){
       let arraySortedByAmt = noneArray.concat(someArray, plentyArray)
       return arraySortedByAmt
     case REPLENISH:
-      let tempState = [...state]
-
-      //update anything already there
-      let refilled = tempState.map(item => action.items.includes(item.name) ? {...item, amount: 'plenty'} : item)
-
-      let counter
-      //loop through stuff and push any new items onto the array
-      for(let i=0; i < action.items.length; i++){
-        // let h  //reset the counter flag thingy
-        for(let h=0; h < refilled.length; h++){
-          if(action.items[i] === refilled[h].name){  break  }
-          counter = h
-        }//inner loop tests each element in the action.items array
-        if(counter === refilled.length - 1){
-          //push
-            refilled.unshift({
-              name: (action.items[i]).trim(),
-              amount: 'plenty',
-              checked: false,
-              id: refilled.reduce((maxId, item) => Math.max(item.id, maxId), -1) + 1
-            })//end push
-        }//end counter decision
-      }//outter loop
-      return refilled
+      if(state.length === 0){
+        let newState = []
+        for(let i=0; i<action.items.length; i++){
+          newState[i] = {
+            name: (action.items[i]).trim(),
+            amount: 'plenty',
+            checked: false,
+            id: i
+          }
+        }//for
+        return newState
+      } else {
+          //update anything already there
+          let refilled = state.map(item => action.items.includes(item.name) ? {...item, amount: 'plenty'} : item)
+          console.log('state is: ')
+          console.log(refilled)
+          //now make an array of items not currently in state
+          let newItems = action.items.filter(function(item){
+            let counter = 0
+            for(let b=0; b<refilled.length; b++){
+              if(refilled[b].name === item){counter++}
+            }
+            return counter > 0 ? false : true
+          })//filter
+          console.log('newItems is: ')
+          console.log(newItems)
+          //next add each of these new items to state
+          if(newItems.length > 0){
+            for(let a=0; a<newItems.length; a++){
+              refilled.unshift({
+                name: (newItems[a]).trim(),
+                amount: 'plenty',
+                checked: false,
+                id: refilled.reduce((maxId, item) => Math.max(item.id, maxId), -1) + 1
+              })//end unshift
+            }//for
+          }//if
+          return refilled
+      }//else
     default:
       return state
   }//switch
 }//inventory
-
