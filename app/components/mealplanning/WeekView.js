@@ -179,6 +179,7 @@ class WeekView extends Component {
         <View style={{flex: 1, paddingTop: 5, width:width}}>
           <SectionList
             sections={sectionData}
+            stickySectionHeadersEnabled={false}
             renderItem={({item}) => <TouchableHighlight onPress={() => this.handleMealPress(item.mealTime, item.date)} activeOpacity={0.3} underlayColor='#ddd'><Text style={ styles.sectionItems }>{item.mealTime}  -  {item.recipeName}</Text></TouchableHighlight>}
             renderSectionHeader={({section}) => <TouchableHighlight onPress={() => this.handleSectionPress(section.key)} activeOpacity={0.3} underlayColor='#ddd'><Text style={styles.sectionHeaders}>{section.title}</Text></TouchableHighlight>}
           ></SectionList>

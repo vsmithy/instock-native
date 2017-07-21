@@ -103,6 +103,7 @@ class DayView extends Component {
         <View style={{flex: 1, paddingTop: 5, width:width}}>
           <SectionList
             sections={sectionData}
+            stickySectionHeadersEnabled={false }
             renderItem={({item}) => <TouchableHighlight onPress={() => this.handleSectionPress(item.mealTime)} activeOpacity={0.3} underlayColor='#ddd'><Text style={ styles.sectionItems }>{item.recipeName}</Text></TouchableHighlight>}
             renderSectionHeader={({section}) => <TouchableHighlight onPress={() => this.handleSectionPress(section.title)} activeOpacity={0.3} underlayColor='#ddd'><Text style={styles.sectionHeaders}>{section.title}</Text></TouchableHighlight>}
           ></SectionList>
