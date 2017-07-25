@@ -10,7 +10,7 @@ class AddButton extends Component {
         <TouchableHighlight 
           onPress={() => navigation.dispatch({ type: this.props.navChoice })}   
           activeOpacity={0.3} 
-          underlayColor='#eof2f1' 
+          underlayColor='transparent' 
           style={{ 
             backgroundColor: '#80cbc4', 
             elevation: 2, 
