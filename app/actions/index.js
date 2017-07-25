@@ -40,6 +40,7 @@ export const setLunchData = ({ recipes }) => ({ type: types.SET_LUNCH_DATA, reci
 export const setDinnerData = ({ recipes }) => ({ type: types.SET_DINNER_DATA, recipes})
 export const setDessertData = ({ recipes }) => ({ type: types.SET_DESSERT_DATA, recipes})
 export const setInstockSearchData = ({ recipes }) => ({ type: types.SET_INSTOCK_SEARCH_DATA, recipes})
+export const setQuerySearchRecipesData = ({ recipes }) => ({ type: types.SET_QUERY_RECIPES_DATA, recipes})
 export const setSingleRecipeData = ({ recipes }) => ({ type: types.SET_SINGLE_RECIPE_DATA, recipes})
 export const addFav = (id, title, image, readyInMinutes, extendedIngredients, analyzedInstructions) => ({ type: types.ADD_FAV, id, title, image, readyInMinutes, extendedIngredients, analyzedInstructions })  
 export const removeFav = (id) => ({ type: types.REMOVE_FAV, id })
@@ -51,7 +52,7 @@ let instance = axios.create({
   baseURL: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes',
   timeout: 10000,
   headers: {
-    'X-Mashape-Authorization': 'add your key here',   //dev
+    'X-Mashape-Authorization': 'Jkhb6JFSa8mshtAeiugBBA43soUip11qPvmjsnOQUUS7RI7vtE',   //dev
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'dataType': 'json',
@@ -60,7 +61,7 @@ let instance = axios.create({
 
 
 export function getRecipes(category) {
-  const getRandomRecipes = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=100&tags=" + category
+  const getRandomRecipes = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=40&tags=" + category
   return (dispatch, getState) => {
     return instance.get(getRandomRecipes)
     .then(resp => {
@@ -84,7 +85,7 @@ export function getRecipes(category) {
 export function getRecipesByIngredient(ingredientList) {
   const stringList = ingredientList.map(item => item.toLowerCase()).toString().replace(/,/g,"%2C").replace(/ /g, "+")
   const fetchURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + stringList + "&limitLicense=false&number=50&ranking=2"
-  console.log(ingredientList)
+
   return (dispatch, getState) => {
     return instance.get(fetchURL)
     .then(resp => { dispatch(setInstockSearchData({recipes: resp})) })
@@ -93,6 +94,22 @@ export function getRecipesByIngredient(ingredientList) {
     })
   }//return
 }//getRecipesByIngredient
+
+export function querySearchRecipes(queryString) {
+  const stringList = queryString.toLowerCase().replace(/,/g,"%2C").replace(/ /g, "+")
+  const fetchURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?instructionsRequired=true&limitLicense=false&number=25&offset=0&query=" + stringList
+  if(queryString === '' || queryString === ' '){
+    console.log('mr reducer says no')
+  } else {
+    return (dispatch, getState) => {
+      return instance.get(fetchURL)
+      .then(resp => { dispatch(setQuerySearchRecipesData({recipes: resp})) })
+      .catch( (ex) => {
+        console.log(ex)
+      })
+    }//return
+  }
+}//querySearchRecipes
 
 
 export function getSingleRecipe(id) {
