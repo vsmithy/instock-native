@@ -16,6 +16,7 @@ import dessertData from './dessertData'
 import favData from './favData'
 import instockSearchData from './instockSearchData'
 import singleRecipeData from './singleRecipeData'
+import querySearchRecipesData from './querySearchRecipesData'
 
 const rootReducer = combineReducers({
   nav,
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   favData,
   instockSearchData,
   singleRecipeData,
+  querySearchRecipesData,
 })//combineReducers
 
 export default rootReducer

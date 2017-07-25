@@ -26,9 +26,9 @@ export default function persistedSettings(state = initialState, action){
       }
     case UPDATE_RECIPE_SEARCH:
       return {
-        chosenRecipeSearch: action.whichSearch,
         mealFilter: action.mealFilter,
         chosenDate: action.chosenDate,
+        chosenRecipeSearch: action.whichSearch,
         newSearchBreakfast: action.newSearchBreakfast,
         newSearchLunch: action.newSearchLunch,
         newSearchDinner: action.newSearchDinner,
@@ -36,9 +36,9 @@ export default function persistedSettings(state = initialState, action){
       }
     case UPDATE_SEARCHED_FLAG:
       return {
-        chosenRecipeSearch: action.whichSearch,
         mealFilter: action.mealFilter,
         chosenDate: action.chosenDate,
+        chosenRecipeSearch: action.whichSearch,
         newSearchBreakfast: action.newSearchBreakfast,
         newSearchLunch: action.newSearchLunch,
         newSearchDinner: action.newSearchDinner,
