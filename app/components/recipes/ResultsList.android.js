@@ -12,6 +12,7 @@ class ResultsList extends Component {
   constructor(props){
     super(props)
 
+    //determine which dataset to show results for
     let whichData
     if(this.props.persistedSettings.chosenRecipeSearch === 'dinnerData'){
         whichData = this.props.dinnerData
@@ -19,8 +20,10 @@ class ResultsList extends Component {
         whichData = this.props.dessertData
       } else if(this.props.persistedSettings.chosenRecipeSearch === 'lunchData'){
         whichData = this.props.lunchData
-      } else if(this.props.persistedSettings.chosenRecipeSearch === 'breakfastData'){ 
+      } else if(this.props.persistedSettings.chosenRecipeSearch === 'breakfastData'){
         whichData = this.props.breakfastData 
+      } else if(this.props.persistedSettings.chosenRecipeSearch === 'queryRecipesData'){ 
+        whichData = this.props.querySearchRecipesData 
       } else if(this.props.persistedSettings.chosenRecipeSearch === 'instockSearchData'){ 
         whichData = this.props.instockSearchData 
       } else { whichData = this.props.favData  }
@@ -42,23 +45,32 @@ class ResultsList extends Component {
 
   //Life Cycle Methods
   componentWillMount() {
-    console.log('ResultsList will mount')
+    // console.log('ResultsList will mount')
     this.subscription = BackHandler.addEventListener('hardwareBackPress', () => {
-      console.log('back button pressed')
-      console.log('the state is: ' + this.props.navigation.state.routeName +  ' ' + this.props.navigation.state.key)
+      // console.log('back button pressed')
+      // console.log('the state is: ' + this.props.navigation.state.routeName +  ' ' + this.props.navigation.state.key)
       this.props.navigation.goBack()
       return true
     })
   }//will mount
 
   componentWillUnmount() {
-    console.log('ResultsList will UNmount')
+    // console.log('ResultsList will UNmount')
     this.subscription.remove()
   }// will unmount
 
   handlePress(item){
     if(this.props.persistedSettings.chosenRecipeSearch === 'instockSearchData'){
       this.setState({ searching: true })
+      //fethc and then...
+      this.props.getSingleRecipe(item.id).then(() => {
+        this.props.updateDetailRecipe(this.props.singleRecipeData[0].id, this.props.singleRecipeData[0].title, this.props.singleRecipeData[0].readyInMinutes, this.props.singleRecipeData[0].image, this.props.singleRecipeData[0].extendedIngredients, this.props.singleRecipeData[0].analyzedInstructions)
+        this.setState({ searching: false })
+        this.props.navigation.dispatch({ type: 'Details' })
+      })
+    } else if(this.props.persistedSettings.chosenRecipeSearch === 'queryRecipesData'){
+      this.setState({ searching: true })
+
       //fethc and then...
       this.props.getSingleRecipe(item.id).then(() => {
         this.props.updateDetailRecipe(this.props.singleRecipeData[0].id, this.props.singleRecipeData[0].title, this.props.singleRecipeData[0].readyInMinutes, this.props.singleRecipeData[0].image, this.props.singleRecipeData[0].extendedIngredients, this.props.singleRecipeData[0].analyzedInstructions)
@@ -88,22 +100,27 @@ class ResultsList extends Component {
   }//handleSearchedFlag
 
   onRefresh(){
-    let category
-    let whichData
+    let category, whichData
+    let theSearch = this.props.persistedSettings.chosenRecipeSearch
 
-    if(this.props.persistedSettings.chosenRecipeSearch !== 'favData' && this.props.persistedSettings.chosenRecipeSearch !== 'instockSearchData'){
+    if(
+        theSearch === 'breakfastData' || 
+        theSearch === 'lunchData' ||
+        theSearch === 'dinnerData' ||
+        theSearch === 'dessertData'
+      ){
       //set the category
-      if(this.props.persistedSettings.chosenRecipeSearch === 'breakfastData'){ category = 'breakfast'}
-      else if(this.props.persistedSettings.chosenRecipeSearch === 'lunchData'){ category = 'lunch'}
-      else if(this.props.persistedSettings.chosenRecipeSearch === 'dinnerData'){ category = 'dinner'}
+      if(theSearch === 'breakfastData'){ category = 'breakfast'}
+      else if(theSearch === 'lunchData'){ category = 'lunch'}
+      else if(theSearch === 'dinnerData'){ category = 'dinner'}
       else{ category = 'dessert'}
       
       //set the proper dataSet
-      if(this.props.persistedSettings.chosenRecipeSearch === 'dinnerData'){
+      if(theSearch === 'dinnerData'){
         whichData = this.props.dinnerData
-      } else if(this.props.persistedSettings.chosenRecipeSearch === 'dessertData'){
+      } else if(theSearch === 'dessertData'){
         whichData = this.props.dessertData
-      } else if(this.props.persistedSettings.chosenRecipeSearch === 'lunchData'){
+      } else if(theSearch === 'lunchData'){
         whichData = this.props.lunchData
       } else { whichData = this.props.breakfastData }
 
@@ -111,15 +128,15 @@ class ResultsList extends Component {
       this.props.getRecipes(category)
         .then(() => {
             let updatedData
-            if(this.props.persistedSettings.chosenRecipeSearch === 'dinnerData'){
+            if(theSearch === 'dinnerData'){
                 updatedData = this.props.dinnerData
-              } else if(this.props.persistedSettings.chosenRecipeSearch === 'dessertData'){
+              } else if(theSearch === 'dessertData'){
                 updatedData = this.props.dessertData
-              } else if(this.props.persistedSettings.chosenRecipeSearch === 'lunchData'){
+              } else if(theSearch === 'lunchData'){
                 updatedData = this.props.lunchData
-              } else if(this.props.persistedSettings.chosenRecipeSearch === 'breakfastData'){ 
+              } else if(theSearch === 'breakfastData'){ 
                 updatedData = this.props.breakfastData 
-              } else if(this.props.persistedSettings.chosenRecipeSearch === 'instockSearchData'){ 
+              } else if(theSearch === 'instockSearchData'){ 
                 updatedData = this.props.instockSearchData 
               } else { updatedData = this.props.favData  }
 
@@ -142,9 +159,12 @@ class ResultsList extends Component {
       resultHeader = 'Favorites'
     } else if(this.props.persistedSettings.chosenRecipeSearch === 'breakfastData'){
       resultHeader = 'Breakfast'
+    } else if(this.props.persistedSettings.chosenRecipeSearch === 'queryRecipesData'){
+      resultHeader = 'Results'
     } else {
       resultHeader = "InStock"
     }
+
 
     if(this.state.searching){
       return <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, flexDirection: 'column', backgroundColor: '#fff' }} ><ActivityIndicator animating={this.state.searching} color='#b2dfdb' size='large' /></View>
@@ -169,7 +189,7 @@ class ResultsList extends Component {
             renderRow={(item) => 
                 <TouchableHighlight onPress={() => this.handlePress(item) } style={{width: width, height: 400, flex: 1, alignItems: 'center', justifyContent: 'flex-start', marginBottom: 5}} >
                   <View style={{ width: width, flex: 1, alignItems: 'center', justifyContent: 'flex-start' }} >
-                    <Image opacity={1} source={{uri: item.image}} style={{width: width, flex: 1}} />
+                    <Image opacity={1} source={{uri: this.props.persistedSettings.chosenRecipeSearch === 'queryRecipesData' ? "https://spoonacular.com/recipeImages/" + item.image : item.image}} style={{width: width, flex: 1}} />
                     <View style={{ backgroundColor: 'rgba(0,0,0,0.7)' ,position:'absolute', width: width, height: 75,marginTop: 15, justifyContent: 'center', alignItems: 'flex-start' }}>
                       <Text ellipsizeMode='tail' numberOfLines={2} style={{ color: '#fff', fontSize: 25, marginLeft: 15, paddingBottom: 3 }} >{item.title}</Text>
                     </View>
@@ -208,6 +228,7 @@ const mapStateToProps = state => ({
   persistedSettings: state.persistedSettings,
   favData: state.favData,
   instockSearchData: state.instockSearchData,
+  querySearchRecipesData: state.querySearchRecipesData,
   singleRecipeData: state.singleRecipeData,
 })//map state to props
 

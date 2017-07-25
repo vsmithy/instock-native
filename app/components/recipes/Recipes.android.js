@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View, BackHandler, StyleSheet, TouchableHighlight, Text, Image, Dimensions, ActivityIndicator, Button, AsyncStorage  } from 'react-native'
+import { View, BackHandler, StyleSheet, TouchableHighlight, Text, Image, Dimensions, ActivityIndicator, Button, AsyncStorage, TextInput  } from 'react-native'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -14,7 +14,12 @@ class Recipes extends Component {
     super(props)
 
     this.subscription
-    this.state = { whichView: 'first', searching: false, ingredientsInput: 'carrots' }//state
+    this.state = { 
+      whichView: 'first', 
+      searching: false, 
+      ingredientsInput: 'carrots',
+      text:''
+    }//state
   }//constructor
 
   static propTypes = {
@@ -52,6 +57,7 @@ class Recipes extends Component {
     let whichSearch = category + 'Data'
     this.setState({ searching: true })
 
+    //next update persistent settings
     this.props.updateRecipeSearch(
       this.props.persistedSettings.mealFilter, 
       this.props.persistedSettings.chosenDate, 
@@ -62,6 +68,9 @@ class Recipes extends Component {
       this.props.persistedSettings.newSearchDessert, 
     )//update recipe search
 
+
+    //next - if we have already searched for stuff and havent reached the end of the list, hit the api for new data
+    //whichSettings: determines whether we actually query the api (if true) or just navigate to the results section
     let whichSettings
     if(category === 'breakfast'){ whichSettings = this.props.persistedSettings.newSearchBreakfast }
     else if(category === 'lunch'){ whichSettings = this.props.persistedSettings.newSearchLunch}
@@ -70,6 +79,16 @@ class Recipes extends Component {
     else {whichSettings = true}
 
     if(whichSettings === true && category !== 'fav'){
+      /**
+      |--------------------------------------------------
+      | ok, so now we have determined we need fresh data
+      | our steps will be to:
+      | -api request
+      | -setState searching: false
+      | -navigate to the results page
+      | -update the persisted settings
+      |--------------------------------------------------
+      */
       this.props.getRecipes(category).then( () => {
         this.setState({ searching: false })
         this.props.navigation.dispatch({ type: 'Results' })
@@ -82,7 +101,7 @@ class Recipes extends Component {
           category === 'dinner' ? false : this.props.persistedSettings.newSearchDinner, 
           category === 'dessert' ? false : this.props.persistedSettings.newSearchDessert
         )//updateSearchedFlag
-      })//end .then
+      })//end api req
     } else {
         this.setState({ searching: false })
         this.props.navigation.dispatch({ type: 'Results' })
@@ -110,6 +129,30 @@ class Recipes extends Component {
     })
   }//handleIngredientSearch
 
+
+  handleQueryRecipes(queryString){
+    if(queryString === '' || queryString === ' '){
+      console.log('nope nope nope...')
+    } else {
+      console.log('searching for ' + queryString)
+      this.setState({ searching: true })
+
+      this.props.updateRecipeSearch(
+        this.props.persistedSettings.mealFilter, 
+        this.props.persistedSettings.chosenDate, 
+        'queryRecipesData',
+        this.props.persistedSettings.newSearchBreakfast, 
+        this.props.persistedSettings.newSearchLunch, 
+        this.props.persistedSettings.newSearchDinner, 
+        this.props.persistedSettings.newSearchDessert, 
+      )
+
+      this.props.querySearchRecipes(queryString).then(() => {
+        this.setState({ searching: false })
+        this.props.navigation.dispatch({ type: 'Results' })
+      })
+    }//if-else
+  }//handleQueryRecipes
 
   async initialSetup(){
     //fetching data for initial state
@@ -139,7 +182,37 @@ class Recipes extends Component {
     } else if(this.state.whichView === 'first'){
       return (
         <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, flexDirection: 'column' }}>
-            
+
+        <View  style={styles.area} >
+          <View style={styles.input} >
+            <TextInput 
+              onChangeText = { (text) => this.setState({ text }) }
+              ref = 'addInput'
+              placeholder = 'search...' 
+              placeholderTextColor = '#d7ccc8'
+              returnKeyLabel = 'add'
+              selectTextOnFocus= {true}
+              underlineColorAndroid = 'rgba(0,0,0,0)'
+              blurOnSubmit = {false}
+              onSubmitEditing = {() => this.handleQueryRecipes(this.state.text)}
+              fontSize = {20}
+              includeFontPadding = {false}
+              textAlignVertical = 'center'
+            />
+          </View>
+          <View>
+            <TouchableHighlight 
+                onPress={() => this.handleQueryRecipes(this.state.text)}
+                underlayColor="#BCAAA4"
+                activeOpacity={0.3}
+                underlayColor='rgba(0,0,0,0)'
+                style={ styles.icon }
+            >
+              <MaterialIcons name="add-box" size={32} color='#6d4c41' />
+            </TouchableHighlight>
+          </View>
+        </View>
+
         <TouchableHighlight onPress={ () => this.searchPressed('fav') } style={{width: width, flex: 1, alignItems: 'center', justifyContent: 'center'}} >
           <View style={{ width: width, flex: 1, alignItems: 'center', justifyContent: 'center' }} >
             <Image opacity={.8} source={require('../../../assets/images/fav.jpg')} style={{width: width, flex: 1}} />
@@ -154,10 +227,10 @@ class Recipes extends Component {
           </View>
         </TouchableHighlight>
 
-        <TouchableHighlight onPress={ () => this.handleIngredientSearch()} style={{width: width, flex: 1, alignItems: 'center', justifyContent: 'center'}}  >
+        <TouchableHighlight onPress={ () => console.log('blah')} style={{width: width, flex: 1, alignItems: 'center', justifyContent: 'center'}}  >
           <View style={{ width: width, flex: 1, alignItems: 'center', justifyContent: 'center' }} >
             <Image opacity={.8} source={require('../../../assets/images/lunch.jpg')} style={{width: width, flex: 1}} />
-            <View style={{ backgroundColor: 'rgba(0,0,0,0.4)' ,position:'absolute', width: width, height: height/3, justifyContent: 'center'  }}><Text style={{ color: '#fff', fontSize: 35, marginLeft: 15 }} >What's InStock</Text></View>
+            <View style={{ backgroundColor: 'rgba(0,0,0,0.4)' ,position:'absolute', width: width, height: height/3, justifyContent: 'center'  }}><Text style={{ color: '#fff', fontSize: 35, marginLeft: 15 }} >Coming Soon...</Text></View>
           </View>
         </TouchableHighlight>
         </View>
@@ -210,11 +283,6 @@ class Recipes extends Component {
 const mapStateToProps = state => ({
   recipes: state.recipes,
   persistedSettings: state.persistedSettings,
-  mealPlanning: state.mealPlanning,
-  breakfastData: state.breakfastData,
-  lunchData: state.lunchData,
-  dinnerData: state.dinnerData,
-  dessertData: state.dessertData,
   favData: state.favData,
   inventory: state.inventory,
 })//map state to props
@@ -243,6 +311,31 @@ const styles = StyleSheet.create({
     color: '#616161'
   },
   dateBarLeft: {width: 0.2*(width-20), marginRight: 0.1*(width-20)},
+  area: {
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center',
+    paddingTop: 5,
+    paddingBottom:5,
+    paddingRight: 10,
+    paddingLeft: 10,
+    marginTop: 0,
+    borderBottomColor: '#d7ccc8',
+    borderTopColor: '#d7ccc8',
+    borderRightColor: 'rgba(0,0,0,0)',
+    borderBottomWidth: 1,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderStyle: 'solid',
+    height: 50, 
+    width: width,
+    backgroundColor:'#efebe9'
+  },
+  input: {
+    borderColor: '#ddd', borderWidth: 0, width: 0.9*(width - 20)
+  },
+  icon: {width: 0.1*(width - 20)} 
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Recipes)
