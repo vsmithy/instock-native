@@ -52,7 +52,7 @@ let instance = axios.create({
   baseURL: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes',
   timeout: 10000,
   headers: {
-    'X-Mashape-Authorization': 'Jkhb6JFSa8mshtAeiugBBA43soUip11qPvmjsnOQUUS7RI7vtE',   //dev
+    'X-Mashape-Authorization': 'yourStuffGoesHere...',   //dev
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'dataType': 'json',
