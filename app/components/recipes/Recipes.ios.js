@@ -211,10 +211,6 @@ const mapStateToProps = state => ({
   recipes: state.recipes,
   persistedSettings: state.persistedSettings,
   mealPlanning: state.mealPlanning,
-  breakfastData: state.breakfastData,
-  lunchData: state.lunchData,
-  dinnerData: state.dinnerData,
-  dessertData: state.dessertData,
   favData: state.favData,
   inventory: state.inventory,
 })//map state to props

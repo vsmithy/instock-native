@@ -200,15 +200,10 @@ class ResultsList extends Component {
 }//component
 
 const mapStateToProps = state => ({
-  dessertData: state.dessertData,
-  dinnerData: state.dinnerData,
-  lunchData: state.lunchData,
-  breakfastData: state.breakfastData,
   chosenDetailItem: state.chosenDetailItem,
   persistedSettings: state.persistedSettings,
   favData: state.favData,
-  instockSearchData: state.instockSearchData,
-  singleRecipeData: state.singleRecipeData,
+  recipes: state.recipes,
 })//map state to props
 
 function mapDispatchToProps(dispatch){

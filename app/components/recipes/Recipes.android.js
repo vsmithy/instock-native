@@ -22,9 +22,6 @@ class Recipes extends Component {
     }//state
   }//constructor
 
-  static propTypes = {
-  }//propTypes
-
   static navigationOptions = {
     title: 'Recipes',
     header: null,
@@ -39,12 +36,12 @@ class Recipes extends Component {
   }//will mount
 
   componentDidMount() {
-    console.log('Recipes did mount')
+    // console.log('Recipes did mount')
     this.initialSetup()
   }//did mount
 
   async componentDidUpdate(prevProps, prevState) {
-    console.log('Recipes did update')
+    // console.log('Recipes did update')
     let myStringAry = JSON.stringify(this.props.favData)
     try {
       await AsyncStorage.setItem('favData', myStringAry)
@@ -58,15 +55,7 @@ class Recipes extends Component {
     this.setState({ searching: true })
 
     //next update persistent settings
-    this.props.updateRecipeSearch(
-      this.props.persistedSettings.mealFilter, 
-      this.props.persistedSettings.chosenDate, 
-      whichSearch,
-      this.props.persistedSettings.newSearchBreakfast, 
-      this.props.persistedSettings.newSearchLunch, 
-      this.props.persistedSettings.newSearchDinner, 
-      this.props.persistedSettings.newSearchDessert, 
-    )//update recipe search
+    this.props.updateRecipeSearch(whichSearch)//update recipe search
 
 
     //next - if we have already searched for stuff and havent reached the end of the list, hit the api for new data
@@ -93,9 +82,6 @@ class Recipes extends Component {
         this.setState({ searching: false })
         this.props.navigation.dispatch({ type: 'Results' })
         this.props.updateSearchedFlag(
-          this.props.persistedSettings.mealFilter, 
-          this.props.persistedSettings.chosenDate, 
-          this.props.persistedSettings.chosenRecipeSearch, 
           category === 'breakfast' ? false : this.props.persistedSettings.newSearchBreakfast, 
           category === 'lunch' ? false : this.props.persistedSettings.newSearchLunch,
           category === 'dinner' ? false : this.props.persistedSettings.newSearchDinner, 
@@ -113,15 +99,7 @@ class Recipes extends Component {
     this.setState({ searching: true })
     const inventoryListConverted = this.props.inventory.filter(item => item.amount !== 'none').map(item => item.name)
     
-    this.props.updateRecipeSearch(
-      this.props.persistedSettings.mealFilter, 
-      this.props.persistedSettings.chosenDate, 
-      'instockSearchData',
-      this.props.persistedSettings.newSearchBreakfast, 
-      this.props.persistedSettings.newSearchLunch, 
-      this.props.persistedSettings.newSearchDinner, 
-      this.props.persistedSettings.newSearchDessert, 
-    )
+    this.props.updateRecipeSearch('instockSearchData')
 
     this.props.getRecipesByIngredient(inventoryListConverted).then(() => {
       this.setState({ searching: false })
@@ -132,20 +110,12 @@ class Recipes extends Component {
 
   handleQueryRecipes(queryString){
     if(queryString === '' || queryString === ' '){
-      console.log('nope nope nope...')
+      // console.log('nope nope nope...')
     } else {
-      console.log('searching for ' + queryString)
+      // console.log('searching for ' + queryString)
       this.setState({ searching: true })
 
-      this.props.updateRecipeSearch(
-        this.props.persistedSettings.mealFilter, 
-        this.props.persistedSettings.chosenDate, 
-        'queryRecipesData',
-        this.props.persistedSettings.newSearchBreakfast, 
-        this.props.persistedSettings.newSearchLunch, 
-        this.props.persistedSettings.newSearchDinner, 
-        this.props.persistedSettings.newSearchDessert, 
-      )
+      this.props.updateRecipeSearch('queryRecipesData')
 
       this.props.querySearchRecipes(queryString).then(() => {
         this.setState({ searching: false })
@@ -208,7 +178,7 @@ class Recipes extends Component {
                 underlayColor='rgba(0,0,0,0)'
                 style={ styles.icon }
             >
-              <MaterialIcons name="add-box" size={32} color='#6d4c41' />
+              <MaterialIcons name="search" size={32} color='#6d4c41' />
             </TouchableHighlight>
           </View>
         </View>
@@ -281,7 +251,6 @@ class Recipes extends Component {
 }//component
 
 const mapStateToProps = state => ({
-  recipes: state.recipes,
   persistedSettings: state.persistedSettings,
   favData: state.favData,
   inventory: state.inventory,
