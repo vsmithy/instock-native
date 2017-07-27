@@ -9,7 +9,7 @@ import Header from './Header'
 
 class Inventory extends Component {
   componentDidMount() {
-    console.log('Inventory did mount')  
+    // console.log('Inventory did mount')  
     this.initialSetup()
   }//comp did mount
 
