@@ -31,15 +31,12 @@ Now you can have your shopping list, kitchen inventory, meal planning, and recip
 * ...you know, I should be able to browse recipes based on what stuff we already have in our kitchen
 
 ## Backlog
-* Code and comment cleanup - remove unneeded code, redundancies, implement better search/sort algorithms
-* Consolidate styles into one module??
 * Clean up distinction between smart and dumb components
-* Merge reducers into fewer files
 * Add ability to link with other users
 * Add a settings screen for default options selection and user linking
 
 ## Latest Release Notes (v2.0.1)
-* Cleaned up helpfulFiles directory
+* A bunch of code cleanup
 
 ## To Use
 * Create an Expo / React-Native Project
