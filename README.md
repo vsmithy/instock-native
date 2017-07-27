@@ -33,12 +33,13 @@ Now you can have your shopping list, kitchen inventory, meal planning, and recip
 ## Backlog
 * Code and comment cleanup - remove unneeded code, redundancies, implement better search/sort algorithms
 * Consolidate styles into one module??
-* Cleanup helpfulFiles directory
 * Clean up distinction between smart and dumb components
 * Merge reducers into fewer files
+* Add ability to link with other users
+* Add a settings screen for default options selection and user linking
 
 ## Latest Release Notes (v2.0.1)
-* Add Changes here...
+* Cleaned up helpfulFiles directory
 
 ## To Use
 * Create an Expo / React-Native Project
