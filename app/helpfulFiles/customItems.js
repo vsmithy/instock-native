@@ -1,5 +1,29 @@
 
-// let initDate = new Date()
+//duplicate removal
+
+export const duplicateRemover = (itemToCleanUp) => {
+  let a = [...itemToCleanUp], r=0
+
+  while(r < a.length){
+  //add another while loop??
+    let v = r+1
+    while(v < a.length){
+      if(a[r] === a[v]){
+        a.splice(v,1)
+      }  else {
+        v++
+      }//if-else
+    }//while inner v loop
+    r++
+  }//while outter loop
+
+  return a
+}//duplicateRemover
+
+
+
+
+// Date management stuff
 export const refDates = function(passedDate){
   let chosenDate
   if(typeof(passedDate) === 'string'){ 
