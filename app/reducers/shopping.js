@@ -1,8 +1,4 @@
 import { ADD_SHOP_ITEM,EDIT_SHOP_ITEM,DELETE_SHOP_ITEM,MARK_COMPLETED,CLEAR_COMPLETED,CHECK_FOR_SHOP_DELETE, SET_INITIAL_SHOPPING_DATA } from '../actions/constants'
-// import shoppingList from '../sample-data/shoppingList'
-
-// const initialState = shoppingList
-
 
 export default function shopping(state = [], action){
   switch(action.type){
