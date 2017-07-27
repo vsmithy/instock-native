@@ -7,6 +7,8 @@ import { MaterialCommunityIcons, MaterialIcons, FontAwesome } from '@expo/vector
 //the locals
 import * as actionCreators from '../../actions'
 import DetailIngredient from './DetailIngredient'
+import { duplicateRemover } from '../../helpfulFiles/customItems'
+import { refItemsToAdd, refItems } from '../../helpfulFiles/refIngredients'
 
 class RecipeDetails extends Component {
   constructor(props){
@@ -56,94 +58,11 @@ class RecipeDetails extends Component {
     let favStatus = this.props.favData.findIndex((favItem) => favItem.id === item.id )
     let invList = this.props.inventory.filter(item => item.amount !== 'none').map(item => item.name.toLowerCase())
     let ingredientColorList = []
-
     let inventoryForRecipes = [...invList]
 
-    const refItems = [
-      'vanilla',
-      'vanilla extract',
-      'bread',
-      'flour',
-      'sugar',
-      'brown sugar',
-      'milk',
-      'egg',
-      'eggs',
-      'salt',
-      'cilantro',
-      'ginger',
-      'orange',
-      'oranges',
-      'lemon',
-      'lemons',
-      'parsley',
-      'rice vinegar',
-      'thyme',
-      'dijon',
-      'dijon mustard',
-      'rosemary',
-      'chicken breasts',
-      'ground beef',
-      'mayo',
-      'cranberries',
-      'paprika',
-      'butter',
-      'mint',
-      'onion',
-      'coriander',
-      'cumin',
-      'jalapeno',
-      'jalapenos',
-      'chocolate chips',
-      'cinnamon',
-      'cloves',
-      'nutmeg',
-      'pepper'
-    ]
-
-    const refItemsToAdd = [
-        'vanilla extract',
-        'vanilla',
-        ['wheat bread','white bread','multi-grain bread'],
-        ['bread flour','all purpose flour','all-purpose flour','whole wheat flour'],
-        ['granulated sugar','white sugar'],
-        ['light brown sugar','dark brown sugar'],
-        ['whole milk','skim milk'],
-        'eggs',
-        'egg',
-        ['sea salt','kosher salt','coarse kosher salt'],
-        ['fresh cilantro','fresh cilantro leaves','dried cilantro'],
-        ['fresh ginger','ground ginger'],
-        ['oranges','orange peel','orange zest'],
-        ['orange','orange peel','orange zest'],
-        ['lemons','lemon zest'],
-        ['lemon zest','lemon'],
-        ['fresh parsley','dried parsley'],
-        'unseasoned rice vinegar',
-        ['fresh thyme','dried thyme'],
-        ['dijon mustard','spicy mustard','brown mustard'],
-        ['dijon','spicy mustard','brown mustard'],
-        'fresh rosemary',
-        ['baked chicken breast','boneless chicken breasts','boneless skinless chicken breasts'],
-        'ground turkey',
-        'mayonnaise',
-        'dried cranberries',
-        'smoked paprika',
-        'unsalted butter',
-        'mint leaves',
-        ['yellow onion','sweet onion','vadilia onion','onions'],
-        'ground coriander',
-        'ground cumin',
-        ['pickled jalepeno','pickled jalepenos'],
-        ['pickled jalepeno','pickled jalepenos'],
-        'semi sweet chocolate chips',
-        'ground cinnamon',
-        'ground cloves',
-        'ground nutmeg',
-        ['black pepper','ground black pepper']
-      ]
 
     // for each item in invList _ if it is in refItems, then inventoryForRecipes.concat(refItemsToAdd[idx])
+    // was going to do a binary search here, but the list is so small it doesnt matter. if my list ever approaches 100 items, i'll change to a better algorithm
     for(let i=0;i<invList.length;i++){
       let itemIdx = refItems.findIndex(item => item === invList[i])
 
@@ -154,16 +73,7 @@ class RecipeDetails extends Component {
 
     //remove string duplicates from ingredients list (ing list)
     let ingList = item.extendedIngredients.map(item => item.name.toLowerCase())
-    let filteredList = []
-    ingList.sort()
-    filteredList[0] = ingList[0]
-    for(let i=1; i < ingList.length; i++){
-      let newLength = filteredList.length
-      if(ingList[i] !== filteredList[newLength-1]){
-        filteredList[newLength] = ingList[i]
-      }//if
-    }//for
-
+    let filteredList = duplicateRemover(ingList)
 
     let missingItems = filteredList.reduce(function(numMissing, nextValue){
       //loop over each of the inv items and compare to the current ingredient

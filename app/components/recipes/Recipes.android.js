@@ -208,7 +208,7 @@ class Recipes extends Component {
                 underlayColor='rgba(0,0,0,0)'
                 style={ styles.icon }
             >
-              <MaterialIcons name="add-box" size={32} color='#6d4c41' />
+              <MaterialIcons name="search" size={32} color='#6d4c41' />
             </TouchableHighlight>
           </View>
         </View>

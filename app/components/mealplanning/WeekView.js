@@ -4,8 +4,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 
 //the locals
-import duplicateRemover from '../../helpfulFiles/duplicateRemover'
-import duplicateStringRemover from '../../helpfulFiles/duplicateStringRemover'
 import { refDates } from '../../helpfulFiles/customItems'
 
 

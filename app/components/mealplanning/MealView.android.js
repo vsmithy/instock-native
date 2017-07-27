@@ -4,13 +4,13 @@ import { bindActionCreators } from 'redux'
 import { View, BackHandler, Button, ScrollView, Text, Dimensions, StyleSheet, TouchableHighlight } from 'react-native'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { NavigationActions } from 'react-navigation'
-import { refDates } from '../../helpfulFiles/customItems'
-import * as actionCreators from '../../actions'
 
 //the locals
 import AddButton from './AddButton'
 import ListItem from './ListItem'
 import InputArea from './InputArea'
+import { refDates } from '../../helpfulFiles/customItems'
+import * as actionCreators from '../../actions'
 
 
 class MealView extends Component {
