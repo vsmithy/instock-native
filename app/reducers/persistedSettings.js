@@ -14,31 +14,31 @@ const initialState = {
 export default function persistedSettings(state = initialState, action){
   switch(action.type){
     case UPDATE_DATE_MEAL:
-      console.log('gonna update the chosen date to: ' + action.chosenDate)
+      // console.log('gonna update the chosen date to: ' + action.chosenDate)
       return {
         mealFilter: action.mealFilter,
         chosenDate: action.chosenDate,
-        chosenRecipeSearch: action.whichSearch,
-        newSearchBreakfast: action.newSearchBreakfast,
-        newSearchLunch: action.newSearchLunch,
-        newSearchDinner: action.newSearchDinner,
-        newSearchDessert: action.newSearchDessert,
+        chosenRecipeSearch: state.chosenRecipeSearch,
+        newSearchBreakfast: state.newSearchBreakfast,
+        newSearchLunch: state.newSearchLunch,
+        newSearchDinner: state.newSearchDinner,
+        newSearchDessert: state.newSearchDessert,
       }
     case UPDATE_RECIPE_SEARCH:
       return {
-        mealFilter: action.mealFilter,
-        chosenDate: action.chosenDate,
+        mealFilter: state.mealFilter,
+        chosenDate: state.chosenDate,
         chosenRecipeSearch: action.whichSearch,
-        newSearchBreakfast: action.newSearchBreakfast,
-        newSearchLunch: action.newSearchLunch,
-        newSearchDinner: action.newSearchDinner,
-        newSearchDessert: action.newSearchDessert,
+        newSearchBreakfast: state.newSearchBreakfast,
+        newSearchLunch: state.newSearchLunch,
+        newSearchDinner: state.newSearchDinner,
+        newSearchDessert: state.newSearchDessert,
       }
     case UPDATE_SEARCHED_FLAG:
       return {
-        mealFilter: action.mealFilter,
-        chosenDate: action.chosenDate,
-        chosenRecipeSearch: action.whichSearch,
+        mealFilter: state.mealFilter,
+        chosenDate: state.chosenDate,
+        chosenRecipeSearch: state.chosenRecipeSearch,
         newSearchBreakfast: action.newSearchBreakfast,
         newSearchLunch: action.newSearchLunch,
         newSearchDinner: action.newSearchDinner,
