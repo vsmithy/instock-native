@@ -30,6 +30,16 @@ Now you can have your shopping list, kitchen inventory, meal planning, and recip
 * ...hmmm...i should be able to browse recipes if idk what i want to eat
 * ...you know, I should be able to browse recipes based on what stuff we already have in our kitchen
 
+## Backlog
+* Code and comment cleanup - remove unneeded code, redundancies, implement better search/sort algorithms
+* Consolidate styles into one module??
+* Cleanup helpfulFiles directory
+* Clean up distinction between smart and dumb components
+* Merge reducers into fewer files
+
+## Latest Release Notes (v2.0.1)
+* Add Changes here...
+
 ## To Use
 * Create an Expo / React-Native Project
 * Copy and paste the files in this repo into your project folder
