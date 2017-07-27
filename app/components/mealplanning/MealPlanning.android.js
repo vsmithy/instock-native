@@ -9,9 +9,7 @@ import Calendar from 'react-native-calendar'
 //the locals
 import DayView from './DayView'
 import WeekView from './WeekView'
-import duplicateRemover from '../../helpfulFiles/duplicateRemover'
-import duplicateStringRemover from '../../helpfulFiles/duplicateStringRemover'
-import { refDates } from '../../helpfulFiles/customItems'
+import { refDates, duplicateRemover } from '../../helpfulFiles/customItems'
 import * as actionCreators from '../../actions'
 
 class MealPlanning extends Component {
@@ -35,7 +33,7 @@ class MealPlanning extends Component {
   }
 
   componentDidMount() {
-    console.log('Meal Planning did mount')
+    // console.log('Meal Planning did mount')
     this.initialSetup()
   }
 
@@ -54,15 +52,7 @@ class MealPlanning extends Component {
   }//nav options
 
   onDateSelect(date){
-    this.props.updateDateMeal(
-      'Breakfast', 
-      date, 
-      this.props.persistedSettings.whichSearch,
-      this.props.persistedSettings.newSearchBreakfast, 
-      this.props.persistedSettings.newSearchLunch, 
-      this.props.persistedSettings.newSearchDinner, 
-      this.props.persistedSettings.newSearchDessert,
-    )
+    this.props.updateDateMeal('Breakfast', date)
     this.setState({ viewSelect: 'day'})
   }//onDateSelect
 
@@ -107,7 +97,8 @@ class MealPlanning extends Component {
   }
 
   renderView(){
-    const stringEventList = duplicateStringRemover(this.props.mealPlanning)
+    const mealDates = this.props.mealPlanning.map(item => item.stringDate)
+    const stringEventList = duplicateRemover(mealDates)
     const calStyles =  {
       customStyle: {
         day: {fontSize: 17, textAlign: 'center', color: '#616161'},

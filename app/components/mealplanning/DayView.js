@@ -25,42 +25,18 @@ class DayView extends Component {
   handlePrevDy(){
     let chosenDate = this.props.persistedSettings.chosenDate
     let referenceDates = refDates(chosenDate)
-    this.props.updateDateMeal(
-      'Breakfast', 
-      referenceDates.yesterday, 
-      this.props.persistedSettings.whichSearch, 
-      this.props.persistedSettings.newSearchBreakfast, 
-      this.props.persistedSettings.newSearchLunch, 
-      this.props.persistedSettings.newSearchDinner, 
-      this.props.persistedSettings.newSearchDessert, 
-    )
+    this.props.updateDateMeal('Breakfast', referenceDates.yesterday)
   }//handlePrevWk
 
   handleNextDy(){
     let chosenDate = this.props.persistedSettings.chosenDate
     let referenceDates = refDates(chosenDate)
-    this.props.updateDateMeal(
-      'Breakfast', 
-      referenceDates.tomorrow, 
-      this.props.persistedSettings.whichSearch, 
-      this.props.persistedSettings.newSearchBreakfast, 
-      this.props.persistedSettings.newSearchLunch, 
-      this.props.persistedSettings.newSearchDinner, 
-      this.props.persistedSettings.newSearchDessert, 
-    )
+    this.props.updateDateMeal('Breakfast', referenceDates.tomorrow)
   }//handleNextWk
 
   handleSectionPress(mealTime){
     //pass mealtime and date to persisted settings
-    this.props.updateDateMeal(
-      mealTime, 
-      this.props.persistedSettings.chosenDate, 
-      this.props.persistedSettings.whichSearch, 
-      this.props.persistedSettings.newSearchBreakfast, 
-      this.props.persistedSettings.newSearchLunch, 
-      this.props.persistedSettings.newSearchDinner, 
-      this.props.persistedSettings.newSearchDessert, 
-    )
+    this.props.updateDateMeal(mealTime, this.props.persistedSettings.chosenDate)
 
     //navigate to the meal screen
     this.props.navigation.dispatch({ type: 'Meal' })
@@ -129,7 +105,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 40,
     padding: 10,
-    // paddingRight: 10,
     borderBottomColor: '#d7ccc8',
     borderRightColor: 'rgba(0,0,0,0)',
     borderBottomWidth: 1,

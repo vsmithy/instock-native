@@ -4,8 +4,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 
 //the locals
-import duplicateRemover from '../../helpfulFiles/duplicateRemover'
-import duplicateStringRemover from '../../helpfulFiles/duplicateStringRemover'
 import { refDates } from '../../helpfulFiles/customItems'
 
 
@@ -28,29 +26,13 @@ class WeekView extends Component {
   handlePrevWk(){
     let chosenDate = this.props.persistedSettings.chosenDate
     let referenceDates = refDates(chosenDate)
-    this.props.updateDateMeal(
-      'Breakfast', 
-      referenceDates.lastWeek, 
-      this.props.persistedSettings.whichSearch,
-      this.props.persistedSettings.newSearchBreakfast, 
-      this.props.persistedSettings.newSearchLunch, 
-      this.props.persistedSettings.newSearchDinner, 
-      this.props.persistedSettings.newSearchDessert,
-    )
+    this.props.updateDateMeal('Breakfast', referenceDates.lastWeek)
   }//handlePrevWk
 
   handleNextWk(){
     let chosenDate = this.props.persistedSettings.chosenDate
     let referenceDates = refDates(chosenDate)
-    this.props.updateDateMeal(
-      'Breakfast', 
-      referenceDates.nextWeek, 
-      this.props.persistedSettings.whichSearch,
-      this.props.persistedSettings.newSearchBreakfast, 
-      this.props.persistedSettings.newSearchLunch, 
-      this.props.persistedSettings.newSearchDinner, 
-      this.props.persistedSettings.newSearchDessert,
-    )
+    this.props.updateDateMeal('Breakfast', referenceDates.nextWeek)
   }//handleNextWk
 
   handleSectionPress(day){
@@ -63,36 +45,12 @@ class WeekView extends Component {
 
 
     if(day === 0){
-      this.props.updateDateMeal(
-        'Breakfast', 
-        referenceDates.startOfWeek, 
-        this.props.persistedSettings.whichSearch,
-        this.props.persistedSettings.newSearchBreakfast, 
-        this.props.persistedSettings.newSearchLunch, 
-        this.props.persistedSettings.newSearchDinner, 
-        this.props.persistedSettings.newSearchDessert,
-      )
+      this.props.updateDateMeal('Breakfast', referenceDates.startOfWeek)
     } else if(day === 6){
-      this.props.updateDateMeal(
-        'Breakfast', 
-        referenceDates.endOfWeek, 
-        this.props.persistedSettings.whichSearch,
-        this.props.persistedSettings.newSearchBreakfast, 
-        this.props.persistedSettings.newSearchLunch, 
-        this.props.persistedSettings.newSearchDinner, 
-        this.props.persistedSettings.newSearchDessert,
-      )
+      this.props.updateDateMeal('Breakfast', referenceDates.endOfWeek)
     } else {
       let newDate = new Date(refYear, refMonth, selectedSectionDay)
-      this.props.updateDateMeal(
-        'Breakfast', 
-        newDate, 
-        this.props.persistedSettings.whichSearch,
-        this.props.persistedSettings.newSearchBreakfast, 
-        this.props.persistedSettings.newSearchLunch, 
-        this.props.persistedSettings.newSearchDinner, 
-        this.props.persistedSettings.newSearchDessert,
-      )
+      this.props.updateDateMeal('Breakfast', newDate)
     }//if-else block
 
     this.props.handleViewSelect('day')
@@ -100,15 +58,7 @@ class WeekView extends Component {
 
   handleMealPress(mealTime, mealDate){
     //pass mealtime and date to persisted settings
-    this.props.updateDateMeal(
-      mealTime, 
-      (new Date(mealDate)), 
-      this.props.persistedSettings.whichSearch,
-      this.props.persistedSettings.newSearchBreakfast, 
-      this.props.persistedSettings.newSearchLunch, 
-      this.props.persistedSettings.newSearchDinner, 
-      this.props.persistedSettings.newSearchDessert,
-    )
+    this.props.updateDateMeal(mealTime, (new Date(mealDate)))
 
     //navigate to the meal screen
     this.props.navigation.dispatch({ type: 'Meal' })
