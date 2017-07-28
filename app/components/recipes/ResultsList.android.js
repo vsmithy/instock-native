@@ -50,19 +50,12 @@ class ResultsList extends Component {
   }// will unmount
 
   handlePress(item){
-    if(this.props.persistedSettings.chosenRecipeSearch === 'instockSearchData'){
-      this.setState({ searching: true })
-      //fethc and then...
-      this.props.getSingleRecipe(item.id).then(() => {
-        this.props.updateDetailRecipe(this.props.singleRecipeData[0].id, this.props.singleRecipeData[0].title, this.props.singleRecipeData[0].readyInMinutes, this.props.singleRecipeData[0].image, this.props.singleRecipeData[0].extendedIngredients, this.props.singleRecipeData[0].analyzedInstructions)
-        this.setState({ searching: false })
-        this.props.navigation.dispatch({ type: 'Details' })
-      })
-    } else if(this.props.persistedSettings.chosenRecipeSearch === 'queryRecipesData'){
+    if(this.props.persistedSettings.chosenRecipeSearch === 'queryRecipesData'){
       this.setState({ searching: true })
 
       //fethc and then...
       this.props.getSingleRecipe(item.id).then(() => {
+        // console.log('updating the single recipe details')
         this.props.updateDetailRecipe(this.props.singleRecipeData[0].id, this.props.singleRecipeData[0].title, this.props.singleRecipeData[0].readyInMinutes, this.props.singleRecipeData[0].image, this.props.singleRecipeData[0].extendedIngredients, this.props.singleRecipeData[0].analyzedInstructions)
         this.setState({ searching: false })
         this.props.navigation.dispatch({ type: 'Details' })
@@ -192,6 +185,7 @@ class ResultsList extends Component {
 
 const mapStateToProps = state => ({
   recipes: state.recipes,
+  singleRecipeData: state.singleRecipeData,
   chosenDetailItem: state.chosenDetailItem,
   persistedSettings: state.persistedSettings,
   favData: state.favData,

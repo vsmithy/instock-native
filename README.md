@@ -30,6 +30,15 @@ Now you can have your shopping list, kitchen inventory, meal planning, and recip
 * ...hmmm...i should be able to browse recipes if idk what i want to eat
 * ...you know, I should be able to browse recipes based on what stuff we already have in our kitchen
 
+## Backlog
+* Clean up distinction between smart and dumb components
+* Add ability to link with other users
+* Add a settings screen for default options selection and user linking
+* Add ability to easily re-use all the meals you ate on a particular day (for ex. if you eat the same thing every Saturday)
+
+## Latest Release Notes (v2.0.1)
+* A bunch of code cleanup
+
 ## To Use
 * Create an Expo / React-Native Project
 * Copy and paste the files in this repo into your project folder

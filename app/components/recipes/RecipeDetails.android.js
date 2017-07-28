@@ -50,7 +50,6 @@ class RecipeDetails extends Component {
     }
   }//handleFav
 
-
   render() {
     const { width } = Dimensions.get('screen')
     const item = this.props.chosenDetailItem[0]
@@ -90,71 +89,135 @@ class RecipeDetails extends Component {
 
     const numIngredients = item.extendedIngredients.length
 
-    return (
-      <ScrollView style={{width: width, flex: 1, backgroundColor: '#fff'}}><View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', width: width }}>
+    if(item.analyzedInstructions.length === 0){
+      return (
+        <ScrollView style={{width: width, flex: 1, backgroundColor: '#fff'}}><View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', width: width }}>
 
-        <View style={{width: width, height: 400, flex: 1, alignItems: 'center', justifyContent: 'flex-start'}} >
-            <View style={{flexDirection: 'row', height: 70, width: width, backgroundColor: '#fff', padding: 5, alignItems: 'center', justifyContent: 'flex-start'}}>
-              <TouchableHighlight onPress={() => this.props.navigation.goBack()}  style={ styles.dateBarLeft }   activeOpacity={0.3} underlayColor='#efebe9'>
-                <MaterialIcons name='arrow-back' size={28} color='#616161' />
+          <View style={{width: width, height: 400, flex: 1, alignItems: 'center', justifyContent: 'flex-start'}} >
+              <View style={{flexDirection: 'row', height: 70, width: width, backgroundColor: '#fff', padding: 5, alignItems: 'center', justifyContent: 'flex-start'}}>
+                <TouchableHighlight onPress={() => this.props.navigation.goBack()}  style={ styles.dateBarLeft }   activeOpacity={0.3} underlayColor='#efebe9'>
+                  <MaterialIcons name='arrow-back' size={28} color='#616161' />
+                </TouchableHighlight>
+                <Text ellipsizeMode='tail' numberOfLines={3} style={{ color: '#616161', fontSize: 20, marginLeft: 15, flex: 1 }} >{item.title}</Text>
+              </View>
+
+              <Image source={{uri: item.image}} style={{width: width, flex: 1}} />
+
+              <TouchableHighlight style={{ alignItems:'center', justifyContent:'center', height: 60, position:'absolute', marginTop: 300, right: 50, borderRadius: 50, opacity: .75 }} onPress={() => this.handleFav(favStatus)} activeOpacity={0.3} underlayColor='#616161' >
+                <MaterialIcons name='favorite' size={60} color={favStatus === -1 ? '#fff' : '#c62828'} />
               </TouchableHighlight>
-              <Text ellipsizeMode='tail' numberOfLines={3} style={{ color: '#616161', fontSize: 20, marginLeft: 15, flex: 1 }} >{item.title}</Text>
-            </View>
-
-            <Image source={{uri: item.image}} style={{width: width, flex: 1}} />
-
-            <TouchableHighlight style={{ alignItems:'center', justifyContent:'center', height: 60, position:'absolute', marginTop: 300, right: 50, borderRadius: 50, opacity: .75 }} onPress={() => this.handleFav(favStatus)} activeOpacity={0.3} underlayColor='#616161' >
-              <MaterialIcons name='favorite' size={60} color={favStatus === -1 ? '#fff' : '#c62828'} />
-            </TouchableHighlight>
-        </View>
-
-        <View style={{marginTop: 0, width: width, justifyContent: 'center', alignItems: 'flex-start'}}>
-
-          <View style={{width: width, backgroundColor: '#efebe9', alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', padding: 5}}>
-            <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
-              <Text style={{fontSize: 40}}>{item.readyInMinutes}</Text>
-              <Text style={{fontSize: 15}}>minutes</Text>
-            </View>
-            <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
-              <Text style={{fontSize: 40}}>{numIngredients}</Text>
-              <Text style={{fontSize: 15}}>ingredients</Text>
-            </View>
-            <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
-              {missingItems > 0 ? 
-                <Text style={{fontSize: 40, color:'#c62828'}}>{missingItems}</Text> : 
-                <MaterialIcons name='check' size={40} color='#00897b' />
-              }
-              <Text style={{fontSize: 15, textAlign: 'center'}}>{missingItems > 0 ? 'not inStock' : 'all items inStock'}</Text>
-            </View>
           </View>
 
-          <Text style={{marginTop: 20, fontSize: 30, marginLeft: 10, color: '#616161'}}>Ingredients</Text>
-            {
-              Object
-                .keys(item.extendedIngredients)
-                .map(key => ingredientColorList.findIndex(toColorItem => item.extendedIngredients[key].name === toColorItem) > -1 ? 
-                      <DetailIngredient 
-                        key={key} 
-                        itemKey={key} 
-                        itemName={item.extendedIngredients[key].name} 
-                        itemOrigString={item.extendedIngredients[key].originalString} 
-                        addShopItem={this.props.addShopItem}
-                      />  :
-                      <Text key={key} style={{marginTop: 15, fontSize: 20, marginLeft: 30, marginRight: 10, color: '#00897b' } }>
-                        {item.extendedIngredients[key].originalString}
-                      </Text>
-                  )
-            }
+          <View style={{marginTop: 0, width: width, justifyContent: 'center', alignItems: 'flex-start'}}>
 
-          <Text style={{marginTop: 20, fontSize: 30, marginLeft: 10, color: '#616161'}}>Directions</Text>
-            {
-              Object
-                .keys(item.analyzedInstructions[0].steps)
-                .map(key => <Text key={key} style={{marginTop: 8, fontSize: 20, marginLeft: 30, marginRight: 10, marginBottom: 20, color: '#616161'}}>{item.analyzedInstructions[0].steps[key].number} - {item.analyzedInstructions[0].steps[key].step}</Text>)
-            }
-        </View>
-      </View></ScrollView>
-    )//return
+            <View style={{width: width, backgroundColor: '#efebe9', alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', padding: 5}}>
+              <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
+                <Text style={{fontSize: 40}}>{item.readyInMinutes}</Text>
+                <Text style={{fontSize: 15}}>minutes</Text>
+              </View>
+              <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
+                <Text style={{fontSize: 40}}>{numIngredients}</Text>
+                <Text style={{fontSize: 15}}>ingredients</Text>
+              </View>
+              <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
+                {missingItems > 0 ? 
+                  <Text style={{fontSize: 40, color:'#c62828'}}>{missingItems}</Text> : 
+                  <MaterialIcons name='check' size={40} color='#00897b' />
+                }
+                <Text style={{fontSize: 15, textAlign: 'center'}}>{missingItems > 0 ? 'not inStock' : 'all items inStock'}</Text>
+              </View>
+            </View>
+
+            <Text style={{marginTop: 20, fontSize: 30, marginLeft: 10, color: '#616161'}}>Ingredients</Text>
+              {
+                Object
+                  .keys(item.extendedIngredients)
+                  .map(key => ingredientColorList.findIndex(toColorItem => item.extendedIngredients[key].name === toColorItem) > -1 ? 
+                        <DetailIngredient 
+                          key={key} 
+                          itemKey={key} 
+                          itemName={item.extendedIngredients[key].name} 
+                          itemOrigString={item.extendedIngredients[key].originalString} 
+                          addShopItem={this.props.addShopItem}
+                        />  :
+                        <Text key={key} style={{marginTop: 15, fontSize: 20, marginLeft: 30, marginRight: 10, color: '#00897b' } }>
+                          {item.extendedIngredients[key].originalString}
+                        </Text>
+                    )
+              }
+
+            <Text style={{marginTop: 20, fontSize: 30, marginLeft: 10, color: '#616161'}}>Directions</Text>
+            <Text style={{marginTop: 8, fontSize: 20, marginLeft: 30, marginRight: 10, marginBottom: 20, color: '#616161'}}>This Recipe Is Missing Instructions.</Text>
+          </View>
+        </View></ScrollView>
+      )//return
+    } else {
+      return (
+        <ScrollView style={{width: width, flex: 1, backgroundColor: '#fff'}}><View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', width: width }}>
+
+          <View style={{width: width, height: 400, flex: 1, alignItems: 'center', justifyContent: 'flex-start'}} >
+              <View style={{flexDirection: 'row', height: 70, width: width, backgroundColor: '#fff', padding: 5, alignItems: 'center', justifyContent: 'flex-start'}}>
+                <TouchableHighlight onPress={() => this.props.navigation.goBack()}  style={ styles.dateBarLeft }   activeOpacity={0.3} underlayColor='#efebe9'>
+                  <MaterialIcons name='arrow-back' size={28} color='#616161' />
+                </TouchableHighlight>
+                <Text ellipsizeMode='tail' numberOfLines={3} style={{ color: '#616161', fontSize: 20, marginLeft: 15, flex: 1 }} >{item.title}</Text>
+              </View>
+
+              <Image source={{uri: item.image}} style={{width: width, flex: 1}} />
+
+              <TouchableHighlight style={{ alignItems:'center', justifyContent:'center', height: 60, position:'absolute', marginTop: 300, right: 50, borderRadius: 50, opacity: .75 }} onPress={() => this.handleFav(favStatus)} activeOpacity={0.3} underlayColor='#616161' >
+                <MaterialIcons name='favorite' size={60} color={favStatus === -1 ? '#fff' : '#c62828'} />
+              </TouchableHighlight>
+          </View>
+
+          <View style={{marginTop: 0, width: width, justifyContent: 'center', alignItems: 'flex-start'}}>
+
+            <View style={{width: width, backgroundColor: '#efebe9', alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', padding: 5}}>
+              <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
+                <Text style={{fontSize: 40}}>{item.readyInMinutes}</Text>
+                <Text style={{fontSize: 15}}>minutes</Text>
+              </View>
+              <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
+                <Text style={{fontSize: 40}}>{numIngredients}</Text>
+                <Text style={{fontSize: 15}}>ingredients</Text>
+              </View>
+              <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
+                {missingItems > 0 ? 
+                  <Text style={{fontSize: 40, color:'#c62828'}}>{missingItems}</Text> : 
+                  <MaterialIcons name='check' size={40} color='#00897b' />
+                }
+                <Text style={{fontSize: 15, textAlign: 'center'}}>{missingItems > 0 ? 'not inStock' : 'all items inStock'}</Text>
+              </View>
+            </View>
+
+            <Text style={{marginTop: 20, fontSize: 30, marginLeft: 10, color: '#616161'}}>Ingredients</Text>
+              {
+                Object
+                  .keys(item.extendedIngredients)
+                  .map(key => ingredientColorList.findIndex(toColorItem => item.extendedIngredients[key].name === toColorItem) > -1 ? 
+                        <DetailIngredient 
+                          key={key} 
+                          itemKey={key} 
+                          itemName={item.extendedIngredients[key].name} 
+                          itemOrigString={item.extendedIngredients[key].originalString} 
+                          addShopItem={this.props.addShopItem}
+                        />  :
+                        <Text key={key} style={{marginTop: 15, fontSize: 20, marginLeft: 30, marginRight: 10, color: '#00897b' } }>
+                          {item.extendedIngredients[key].originalString}
+                        </Text>
+                    )
+              }
+
+            <Text style={{marginTop: 20, fontSize: 30, marginLeft: 10, color: '#616161'}}>Directions</Text>
+              {
+                Object
+                  .keys(item.analyzedInstructions[0].steps)
+                  .map(key => <Text key={key} style={{marginTop: 8, fontSize: 20, marginLeft: 30, marginRight: 10, marginBottom: 20, color: '#616161'}}>{item.analyzedInstructions[0].steps[key].number} - {item.analyzedInstructions[0].steps[key].step}</Text>)
+              }
+          </View>
+        </View></ScrollView>
+      )//return
+    }//else
   }//render
 }//component
 

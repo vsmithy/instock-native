@@ -9,14 +9,8 @@ import mealPlanning from './mealPlanning'
 import persistedSettings from './persistedSettings'
 import recipes from './recipes'
 import chosenDetailItem from './chosenDetailItem'
-import breakfastData from './breakfastData'
-import lunchData from './lunchData'
-import dinnerData from './dinnerData'
-import dessertData from './dessertData'
-import favData from './favData'
-import instockSearchData from './instockSearchData'
 import singleRecipeData from './singleRecipeData'
-import querySearchRecipesData from './querySearchRecipesData'
+import favData from './favData'
 
 const rootReducer = combineReducers({
   nav,
@@ -28,14 +22,8 @@ const rootReducer = combineReducers({
   recipes,
   RecipeNav,
   chosenDetailItem,
-  breakfastData,
-  lunchData,
-  dinnerData,
-  dessertData,
   favData,
-  instockSearchData,
   singleRecipeData,
-  querySearchRecipesData,
 })//combineReducers
 
 export default rootReducer

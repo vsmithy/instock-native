@@ -28,13 +28,13 @@ export const editMealItem = (text, id) => ({ type: types.EDIT_MEAL_ITEM, text, i
 export const deleteMealItem = (id) => ({ type: types.DELETE_MEAL_ITEM, id})
 export const deleteMeal = (mealDate, mealType) => ({ type: types.DELETE_MEAL, mealDate, mealType})
 export const addRecipeItem = (recipe) => ({ type: types.ADD_RECIPE_ITEM, recipe})
-export const updateDateMeal = (mealFilter, chosenDate, whichSearch, newSearchBreakfast, newSearchLunch, newSearchDinner, newSearchDessert) => ({ type: types.UPDATE_DATE_MEAL, mealFilter, chosenDate, whichSearch, newSearchBreakfast, newSearchLunch, newSearchDinner, newSearchDessert }) 
+export const updateDateMeal = (mealFilter, chosenDate) => ({ type: types.UPDATE_DATE_MEAL, mealFilter, chosenDate }) 
 
 
 
 //recipes
 export const setInitialFavData = (data) => ({ type: types.SET_INITIAL_FAV_DATA, data })
-export const setSearchedRecipes = ({ recipes }) => ({ type: types.SET_SEARCHED_RECIPES, recipes })
+// export const setSearchedRecipes = ({ recipes }) => ({ type: types.SET_SEARCHED_RECIPES, recipes })
 export const setBreakfastData = ({ recipes }) => ({ type: types.SET_BREAKFAST_DATA, recipes})
 export const setLunchData = ({ recipes }) => ({ type: types.SET_LUNCH_DATA, recipes})
 export const setDinnerData = ({ recipes }) => ({ type: types.SET_DINNER_DATA, recipes})
@@ -44,15 +44,15 @@ export const setQuerySearchRecipesData = ({ recipes }) => ({ type: types.SET_QUE
 export const setSingleRecipeData = ({ recipes }) => ({ type: types.SET_SINGLE_RECIPE_DATA, recipes})
 export const addFav = (id, title, image, readyInMinutes, extendedIngredients, analyzedInstructions) => ({ type: types.ADD_FAV, id, title, image, readyInMinutes, extendedIngredients, analyzedInstructions })  
 export const removeFav = (id) => ({ type: types.REMOVE_FAV, id })
-export const updateRecipeSearch = (mealFilter, chosenDate, whichSearch, newSearchBreakfast, newSearchLunch, newSearchDinner, newSearchDessert) => ({ type: types.UPDATE_RECIPE_SEARCH, mealFilter, chosenDate, whichSearch, newSearchBreakfast, newSearchLunch, newSearchDinner, newSearchDessert})
-export const updateSearchedFlag = (mealFilter, chosenDate, whichSearch, newSearchBreakfast, newSearchLunch, newSearchDinner, newSearchDessert) => ({ type: types.UPDATE_SEARCHED_FLAG, mealFilter, chosenDate, whichSearch, newSearchBreakfast, newSearchLunch, newSearchDinner, newSearchDessert})
+export const updateRecipeSearch = ( whichSearch ) => ({ type: types.UPDATE_RECIPE_SEARCH, whichSearch })
+export const updateSearchedFlag = (newSearchBreakfast, newSearchLunch, newSearchDinner, newSearchDessert) => ({ type: types.UPDATE_SEARCHED_FLAG, newSearchBreakfast, newSearchLunch, newSearchDinner, newSearchDessert})
 export const updateDetailRecipe = (id, title, readyInMinutes, image, extendedIngredients, analyzedInstructions) => ({ type: types.UPDATE_DETAIL_RECIPE,id, title, readyInMinutes, image, extendedIngredients, analyzedInstructions })
 
 let instance = axios.create({
   baseURL: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes',
   timeout: 10000,
   headers: {
-    'X-Mashape-Authorization': 'enter your key here',   //dev
+    'X-Mashape-Authorization': 'enter your key here',
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'dataType': 'json',
@@ -97,7 +97,8 @@ export function getRecipesByIngredient(ingredientList) {
 
 export function querySearchRecipes(queryString) {
   const stringList = queryString.toLowerCase().replace(/,/g,"%2C").replace(/ /g, "+")
-  const fetchURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?instructionsRequired=true&limitLicense=false&number=25&offset=0&query=" + stringList
+  const offset = Math.floor(Math.random() * 400) + 1
+  const fetchURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?instructionsRequired=true&limitLicense=false&number=40&offset=" + offset + "&query=" + stringList
   if(queryString === '' || queryString === ' '){
     console.log('mr reducer says no')
   } else {
@@ -122,4 +123,4 @@ export function getSingleRecipe(id) {
       console.log(ex)
     })
   }//return
-}//getSingleRecipe
+}//getSingleRecipe 

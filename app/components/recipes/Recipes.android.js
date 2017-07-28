@@ -197,10 +197,10 @@ class Recipes extends Component {
           </View>
         </TouchableHighlight>
 
-        <TouchableHighlight onPress={ () => console.log('blah')} style={{width: width, flex: 1, alignItems: 'center', justifyContent: 'center'}}  >
+        <TouchableHighlight onPress={() => this.handleQueryRecipes('summer')} style={{width: width, flex: 1, alignItems: 'center', justifyContent: 'center'}}  >
           <View style={{ width: width, flex: 1, alignItems: 'center', justifyContent: 'center' }} >
-            <Image opacity={.8} source={require('../../../assets/images/lunch.jpg')} style={{width: width, flex: 1}} />
-            <View style={{ backgroundColor: 'rgba(0,0,0,0.4)' ,position:'absolute', width: width, height: height/3, justifyContent: 'center'  }}><Text style={{ color: '#fff', fontSize: 35, marginLeft: 15 }} >Coming Soon...</Text></View>
+            <Image opacity={.8} source={require('../../../assets/images/summer2.png')} style={{width: width, flex: 1}} />
+            <View style={{ backgroundColor: 'rgba(0,0,0,0.4)' ,position:'absolute', width: width, height: height/3, justifyContent: 'center'  }}><Text style={{ color: '#fff', fontSize: 35, marginLeft: 15 }} >Summer's Here!</Text></View>
           </View>
         </TouchableHighlight>
         </View>
