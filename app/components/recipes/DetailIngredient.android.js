@@ -7,10 +7,6 @@ class DetailIngredient extends Component {
       colorVar: '#616161'
     }//state
 
-  static propTypes = {
-
-  }//proptypes
-
   handleAddToShopping(name){
     this.props.addShopItem(name)
     this.setState({ colorVar: '#80cbc4'})

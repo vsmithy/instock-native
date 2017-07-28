@@ -97,7 +97,8 @@ export function getRecipesByIngredient(ingredientList) {
 
 export function querySearchRecipes(queryString) {
   const stringList = queryString.toLowerCase().replace(/,/g,"%2C").replace(/ /g, "+")
-  const fetchURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?instructionsRequired=true&limitLicense=false&number=25&offset=0&query=" + stringList
+  const offset = Math.floor(Math.random() * 400) + 1
+  const fetchURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?instructionsRequired=true&limitLicense=false&number=40&offset=" + offset + "&query=" + stringList
   if(queryString === '' || queryString === ' '){
     console.log('mr reducer says no')
   } else {
@@ -122,4 +123,4 @@ export function getSingleRecipe(id) {
       console.log(ex)
     })
   }//return
-}//getSingleRecipe
+}//getSingleRecipe 

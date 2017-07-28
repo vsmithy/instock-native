@@ -25,7 +25,7 @@ export default class Shopping extends Component {
 
   //Life Cycle Methods
   componentDidMount() {
-    console.log('shop did mount')  
+    // console.log('shop did mount')  
     this.initialSetup()
   }//comp did mount
 

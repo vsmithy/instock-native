@@ -14,19 +14,9 @@ class ResultsList extends Component {
 
     //determine which dataset to show results for
     let whichData
-    if(this.props.persistedSettings.chosenRecipeSearch === 'dinnerData'){
-        whichData = this.props.dinnerData
-      } else if(this.props.persistedSettings.chosenRecipeSearch === 'dessertData'){
-        whichData = this.props.dessertData
-      } else if(this.props.persistedSettings.chosenRecipeSearch === 'lunchData'){
-        whichData = this.props.lunchData
-      } else if(this.props.persistedSettings.chosenRecipeSearch === 'breakfastData'){
-        whichData = this.props.breakfastData 
-      } else if(this.props.persistedSettings.chosenRecipeSearch === 'queryRecipesData'){ 
-        whichData = this.props.querySearchRecipesData 
-      } else if(this.props.persistedSettings.chosenRecipeSearch === 'instockSearchData'){ 
-        whichData = this.props.instockSearchData 
-      } else { whichData = this.props.favData  }
+    if(this.props.persistedSettings.chosenRecipeSearch === 'favData'){
+        whichData = this.props.favData 
+    } else { whichData = this.props.recipes  }
       
 
     const ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !== r2})
@@ -60,19 +50,12 @@ class ResultsList extends Component {
   }// will unmount
 
   handlePress(item){
-    if(this.props.persistedSettings.chosenRecipeSearch === 'instockSearchData'){
-      this.setState({ searching: true })
-      //fethc and then...
-      this.props.getSingleRecipe(item.id).then(() => {
-        this.props.updateDetailRecipe(this.props.singleRecipeData[0].id, this.props.singleRecipeData[0].title, this.props.singleRecipeData[0].readyInMinutes, this.props.singleRecipeData[0].image, this.props.singleRecipeData[0].extendedIngredients, this.props.singleRecipeData[0].analyzedInstructions)
-        this.setState({ searching: false })
-        this.props.navigation.dispatch({ type: 'Details' })
-      })
-    } else if(this.props.persistedSettings.chosenRecipeSearch === 'queryRecipesData'){
+    if(this.props.persistedSettings.chosenRecipeSearch === 'queryRecipesData'){
       this.setState({ searching: true })
 
       //fethc and then...
       this.props.getSingleRecipe(item.id).then(() => {
+        // console.log('updating the single recipe details')
         this.props.updateDetailRecipe(this.props.singleRecipeData[0].id, this.props.singleRecipeData[0].title, this.props.singleRecipeData[0].readyInMinutes, this.props.singleRecipeData[0].image, this.props.singleRecipeData[0].extendedIngredients, this.props.singleRecipeData[0].analyzedInstructions)
         this.setState({ searching: false })
         this.props.navigation.dispatch({ type: 'Details' })
@@ -88,9 +71,6 @@ class ResultsList extends Component {
 
   handleSearchedFlag(){
     this.props.updateSearchedFlag(
-      this.props.persistedSettings.mealFilter, 
-      this.props.persistedSettings.chosenDate, 
-      this.props.persistedSettings.chosenRecipeSearch, 
       this.props.persistedSettings.chosenRecipeSearch === 'breakfastData' ? true : this.props.persistedSettings.newSearchBreakfast, 
       this.props.persistedSettings.chosenRecipeSearch === 'lunchData' ? true : this.props.persistedSettings.newSearchLunch,
       this.props.persistedSettings.chosenRecipeSearch === 'dinnerData' ? true : this.props.persistedSettings.newSearchDinner, 
@@ -100,7 +80,8 @@ class ResultsList extends Component {
   }//handleSearchedFlag
 
   onRefresh(){
-    let category, whichData
+    let category
+    let whichData = this.props.recipes
     let theSearch = this.props.persistedSettings.chosenRecipeSearch
 
     if(
@@ -115,30 +96,13 @@ class ResultsList extends Component {
       else if(theSearch === 'dinnerData'){ category = 'dinner'}
       else{ category = 'dessert'}
       
-      //set the proper dataSet
-      if(theSearch === 'dinnerData'){
-        whichData = this.props.dinnerData
-      } else if(theSearch === 'dessertData'){
-        whichData = this.props.dessertData
-      } else if(theSearch === 'lunchData'){
-        whichData = this.props.lunchData
-      } else { whichData = this.props.breakfastData }
-
       this.setState({ searching: true })
       this.props.getRecipes(category)
         .then(() => {
             let updatedData
-            if(theSearch === 'dinnerData'){
-                updatedData = this.props.dinnerData
-              } else if(theSearch === 'dessertData'){
-                updatedData = this.props.dessertData
-              } else if(theSearch === 'lunchData'){
-                updatedData = this.props.lunchData
-              } else if(theSearch === 'breakfastData'){ 
-                updatedData = this.props.breakfastData 
-              } else if(theSearch === 'instockSearchData'){ 
-                updatedData = this.props.instockSearchData 
-              } else { updatedData = this.props.favData  }
+            if(theSearch === 'favData'){
+                updatedData = this.props.favData
+              } else { updatedData = this.props.recipes  }
 
             this.setState({ dataSource: this.state.dataSource.cloneWithRows(updatedData) })
             this.setState({ searching: false })
@@ -220,16 +184,11 @@ class ResultsList extends Component {
 }//component
 
 const mapStateToProps = state => ({
-  dessertData: state.dessertData,
-  dinnerData: state.dinnerData,
-  lunchData: state.lunchData,
-  breakfastData: state.breakfastData,
+  recipes: state.recipes,
+  singleRecipeData: state.singleRecipeData,
   chosenDetailItem: state.chosenDetailItem,
   persistedSettings: state.persistedSettings,
   favData: state.favData,
-  instockSearchData: state.instockSearchData,
-  querySearchRecipesData: state.querySearchRecipesData,
-  singleRecipeData: state.singleRecipeData,
 })//map state to props
 
 function mapDispatchToProps(dispatch){

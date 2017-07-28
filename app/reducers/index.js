@@ -9,6 +9,7 @@ import mealPlanning from './mealPlanning'
 import persistedSettings from './persistedSettings'
 import recipes from './recipes'
 import chosenDetailItem from './chosenDetailItem'
+import singleRecipeData from './singleRecipeData'
 import favData from './favData'
 
 const rootReducer = combineReducers({
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   RecipeNav,
   chosenDetailItem,
   favData,
+  singleRecipeData,
 })//combineReducers
 
 export default rootReducer

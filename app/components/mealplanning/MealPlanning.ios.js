@@ -9,8 +9,6 @@ import Calendar from 'react-native-calendar'
 //the locals
 import DayView from './DayView'
 import WeekView from './WeekView'
-import duplicateRemover from '../../helpfulFiles/duplicateRemover'
-import duplicateStringRemover from '../../helpfulFiles/duplicateStringRemover'
 import { refDates } from '../../helpfulFiles/customItems'
 import * as actionCreators from '../../actions'
 

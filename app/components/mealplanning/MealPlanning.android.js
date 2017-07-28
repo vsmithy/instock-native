@@ -33,7 +33,7 @@ class MealPlanning extends Component {
   }
 
   componentDidMount() {
-    console.log('Meal Planning did mount')
+    // console.log('Meal Planning did mount')
     this.initialSetup()
   }
 
@@ -52,15 +52,7 @@ class MealPlanning extends Component {
   }//nav options
 
   onDateSelect(date){
-    this.props.updateDateMeal(
-      'Breakfast', 
-      date, 
-      this.props.persistedSettings.whichSearch,
-      this.props.persistedSettings.newSearchBreakfast, 
-      this.props.persistedSettings.newSearchLunch, 
-      this.props.persistedSettings.newSearchDinner, 
-      this.props.persistedSettings.newSearchDessert,
-    )
+    this.props.updateDateMeal('Breakfast', date)
     this.setState({ viewSelect: 'day'})
   }//onDateSelect
 
