@@ -1,5 +1,4 @@
 # instock - a kitchen inventory and meal planning app
-
 Now you can have your shopping list, kitchen inventory, meal planning, and recipe searching all in one place.
 
 ## Features
@@ -9,7 +8,26 @@ Now you can have your shopping list, kitchen inventory, meal planning, and recip
 * Plan meals for any day of the week, and browse recipes for inspiration
 * Add the recipes you like to your favorites list
 * Add missing recipe ingredients directly to your shopping list
- 
+
+## Status
+* Currently working on version 3!
+* You can find version 2 here: https://play.google.com/store/apps/details?id=com.rubygrey.instock
+
+## Upcoming Major Changes!!
+* I have decided to do a complete rewrite, removing Expo (although I did like it!).
+* I am redoing a large part of the UI with only Android in mind because designing for a mix of IOS and Android left me not liking any of the design.
+* I am adding the ability to link app with other friends/family/roomates.
+
+## Backlog
+* [done] Remove the dependency on Expo
+* [done] Add non-Expo icon sets
+* Add animations to bottom of inventory tab
+* Update border colors on shopping tab
+* Add feature that allows for easily copying a meal if you eat the same thing all the time
+* Add sub-sections for week-view of meal planning
+* Add ability to add a recipe from recipes section directly to meal plan
+* Update the colors for the recipe section
+
 ## Tools and Libraries Used
 * React
 * React-Native
@@ -22,24 +40,7 @@ Now you can have your shopping list, kitchen inventory, meal planning, and recip
 * Remote-Redux-Devtools
 * Spoontacular Recipe Api: https://market.mashape.com/spoonacular/recipe-food-nutrition
 
-## Requirements (from wife) went something like...
-* ...hey  babe you should make an app so that we always know if we are out of stuff when grocery shopping...
-* ...hey babe can you add a shopping list on here, and when we are out of stuff we should be able to press a button to add it to our shopping list
-* ...hey babe can you add a meal-planning section so we can plan out what we want for the week
-* ...hey babe when I buy something and check it off of my shopping list, it should ask me if i want to refill my inventory of it
-* ...hmmm...i should be able to browse recipes if idk what i want to eat
-* ...you know, I should be able to browse recipes based on what stuff we already have in our kitchen
-
-## Backlog
-* Create ability to add a recipe search result directly to your meal plan
-* Add ability to link with other users
-* Add a settings screen for default options selection and user linking
-* Add ability to easily re-use all the meals you ate on a particular day (for ex. if you eat the same thing every Saturday)
-
-## Latest Release Notes (v2.0.1)
-* A bunch of code cleanup
-
-## To Use
+## To Use Code for Version 2:
 * Create an Expo / React-Native Project
 * Copy and paste the files in this repo into your project folder
 * npm install
