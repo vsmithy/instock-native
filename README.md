@@ -11,7 +11,7 @@ Now you can have your shopping list, kitchen inventory, meal planning, and recip
 
 ## Status
 * Currently working on version 3!
-* You can find version 2 here: https://play.google.com/store/apps/details?id=com.rubygrey.instock
+* You can find version 2 in master branch or here: https://play.google.com/store/apps/details?id=com.rubygrey.instock
 
 ## Upcoming Major Changes!!
 * I have decided to do a complete rewrite, removing Expo (although I did like it!).
@@ -19,14 +19,15 @@ Now you can have your shopping list, kitchen inventory, meal planning, and recip
 * I am adding the ability to link app with other friends/family/roomates.
 
 ## Backlog
+* [Active] Add sub-sections for week-view of meal planning
+* Add feature that allows for easily copying a meal if you eat the same thing all the time
+* Add ability to add a recipe from recipes section directly to meal plan
+* Add the ability to link app with other friends/family/roomates.
 * [done] Remove the dependency on Expo
 * [done] Add non-Expo icon sets
-* Add animations to bottom of inventory tab
-* Update border colors on shopping tab
-* Add feature that allows for easily copying a meal if you eat the same thing all the time
-* Add sub-sections for week-view of meal planning
-* Add ability to add a recipe from recipes section directly to meal plan
-* Update the colors for the recipe section
+* [done] Add animations to bottom of inventory tab
+* [done] Update border colors on shopping tab
+* [done] Update the colors for the recipe section
 
 ## Tools and Libraries Used
 * React
