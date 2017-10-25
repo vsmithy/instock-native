@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { addNavigationHelpers, StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+// import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 //the locals
 import Recipes from '../components/recipes/Recipes'
@@ -17,16 +17,16 @@ export const RecipeStack = StackNavigator({
 
 class RecipesContainer extends Component { 
 
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    RecipeNav: PropTypes.object.isRequired
-  }//proptypes
+  // static propTypes = {
+  //   dispatch: PropTypes.func.isRequired,
+  //   RecipeNav: PropTypes.object.isRequired
+  // }//proptypes
 
   static navigationOptions = {
     tabBarLabel: 'Recipes',
-    tabBarIcon: ({ tintColor }) => (
-      <MaterialCommunityIcons name="food" size={32} color={tintColor} />
-    )
+    // tabBarIcon: ({ tintColor }) => (
+    //   <MaterialCommunityIcons name="food" size={32} color={tintColor} />
+    // )
   }//navigationOptions
 
   render(){

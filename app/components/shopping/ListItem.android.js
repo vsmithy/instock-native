@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Text, TouchableHighlight, StyleSheet, TextInput, Picker, Dimensions } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+import Icon from  'react-native-vector-icons/MaterialIcons'
 
 export default class ListItem extends Component {
   constructor(props){
@@ -12,13 +12,13 @@ export default class ListItem extends Component {
     }//state
   }//constructor
 
-  static propTypes = {
-    item: PropTypes.object.isRequired,
-    editShopItem: PropTypes.func.isRequired,
-    deletingCount: PropTypes.number.isRequired,
-    checkForShopDelete: PropTypes.func.isRequired,
-    markCompleted: PropTypes.func.isRequired
-  }//propTypes
+  // static propTypes = {
+  //   item: PropTypes.object.isRequired,
+  //   editShopItem: PropTypes.func.isRequired,
+  //   deletingCount: PropTypes.number.isRequired,
+  //   checkForShopDelete: PropTypes.func.isRequired,
+  //   markCompleted: PropTypes.func.isRequired
+  // }//propTypes
 
   handleEditSave(){
     const { item } = this.props
@@ -36,7 +36,7 @@ export default class ListItem extends Component {
         <View style={item.deleting ? styles.deleteRow : styles.row}>
           <Text style={styles.deleteText} ellipsizeMode='tail' numberOfLines={2}>{item.name}</Text>
           <TouchableHighlight onPress={() => this.props.checkForShopDelete(item.id)} style={styles.deleteIcon}  activeOpacity={0.3} underlayColor='rgba(0,0,0,0)'>
-            <MaterialIcons name={item.deleting ? "remove-circle" : "radio-button-unchecked"} size={32} color='#cf2a27' />
+            <Icon name={item.deleting ? "remove-circle" : "radio-button-unchecked"} size={32} color='#cf2a27' />
           </TouchableHighlight>
         </View>
       )//return
@@ -67,7 +67,7 @@ export default class ListItem extends Component {
               underlayColor='rgba(0,0,0,0)'
               style={styles.editIcon}
             >
-                <MaterialIcons name="done" size={32} color='#00897b' />
+                <Icon name="done" size={32} color='#00897b' />
             </TouchableHighlight>
         </View>//entire row
       )//return
@@ -85,7 +85,7 @@ export default class ListItem extends Component {
             onPress={() => this.props.markCompleted(item.id)}
             style={styles.itemIcon}
             activeOpacity={0.3} underlayColor='rgba(0,0,0,0)'>
-              <MaterialIcons name={item.completed ? "check-circle" : "radio-button-unchecked"} size={32} color='#80cbc4' />
+              <Icon name={item.completed ? "check-circle" : "radio-button-unchecked"} size={32} color='#795548' />
           </TouchableHighlight>
         </View>
       )//return

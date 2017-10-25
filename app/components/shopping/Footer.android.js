@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import {View, Text, Dimensions, TouchableHighlight, Button, StyleSheet, Animated} from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+import Icon from  'react-native-vector-icons/MaterialIcons'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../actions/constants'
 
 export default class Footer extends Component {
@@ -16,11 +16,11 @@ export default class Footer extends Component {
     })//state
   }//constructor
 
-  static propTypes = {
-    handleFilter: PropTypes.func.isRequired,
-    filter: PropTypes.string.isRequired,
-    clearCompleted: PropTypes.func.isRequired,
-  }//propTypes
+  // static propTypes = {
+  //   handleFilter: PropTypes.func.isRequired,
+  //   filter: PropTypes.string.isRequired,
+  //   clearCompleted: PropTypes.func.isRequired,
+  // }//propTypes
 
   handleCompleted(){
     if(this.props.filter !== SHOW_ALL){
@@ -133,7 +133,7 @@ export default class Footer extends Component {
           height: 50,
           width: width,
           borderStyle: 'solid',
-          borderTopColor: '#ddd',
+          borderTopColor: '#d7ccc8',
           borderRightColor: 'rgba(0,0,0,0)',
           borderBottomWidth: 0,
           borderTopWidth: 1,
@@ -142,13 +142,13 @@ export default class Footer extends Component {
           transform: [{ translateY: slideDownAnim }]
       }}>
         <View style={styles.filterGroup}>
-          <TouchableHighlight onPress={() => handleFilter(SHOW_ALL)}   activeOpacity={0.3} underlayColor='#e0f2f1' style={{height: 40, justifyContent:'center', alignItems:'center'}} >
+          <TouchableHighlight onPress={() => handleFilter(SHOW_ALL)}   activeOpacity={0.3} underlayColor='#EFEBE9' style={{height: 40, justifyContent:'center', alignItems:'center'}} >
             <Text style={filter === SHOW_ALL ? styles.textActive : styles.text}>All</Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => handleFilter(SHOW_ACTIVE)} style={styles.filter} activeOpacity={0.3} underlayColor='#e0f2f1'><Text style={filter === SHOW_ACTIVE ? styles.textActive : styles.text}>Active</Text></TouchableHighlight>
-          <TouchableHighlight onPress={() => handleFilter(SHOW_COMPLETED)} style={styles.filter} activeOpacity={0.3} underlayColor='#e0f2f1'><Text style={filter === SHOW_COMPLETED ? styles.textActive : styles.text}>Completed</Text></TouchableHighlight>
+          <TouchableHighlight onPress={() => handleFilter(SHOW_ACTIVE)} style={styles.filter} activeOpacity={0.3} underlayColor='#EFEBE9'><Text style={filter === SHOW_ACTIVE ? styles.textActive : styles.text}>Active</Text></TouchableHighlight>
+          <TouchableHighlight onPress={() => handleFilter(SHOW_COMPLETED)} style={styles.filter} activeOpacity={0.3} underlayColor='#EFEBE9'><Text style={filter === SHOW_COMPLETED ? styles.textActive : styles.text}>Completed</Text></TouchableHighlight>
         </View>
-        <View style={styles.clearButton} ><Button onPress={this.handleCompleted.bind(this)} color='#80cbc4' title='clear' /></View>
+        <View style={styles.clearButton} ><Button onPress={this.handleCompleted.bind(this)} color='#795548' title='clear' /></View>
       </Animated.View>
       </View>
     )//return

@@ -1,8 +1,7 @@
-//render out the inventory component while passing it the appropriate props...
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { MaterialIcons } from '@expo/vector-icons'
+// import { MaterialIcons } from '@expo/vector-icons'
 
 //the locals
 import Inventory from '../components/inventory/Inventory'
@@ -12,9 +11,9 @@ import * as actionCreators from '../actions'
 class InventoryContainer extends Component {
   static navigationOptions = {
   tabBarLabel: 'Inventory',
-  tabBarIcon: ({ tintColor }) => (
-    <MaterialIcons name="grid-on" size={32} color={tintColor} />
-  )
+  // tabBarIcon: ({ tintColor }) => (
+  //   <MaterialIcons name="grid-on" size={32} color={tintColor} />
+  // )
 }//nav options
 
   render(){

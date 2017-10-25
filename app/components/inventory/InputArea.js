@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Text, TouchableHighlight, StyleSheet, TextInput, Picker, Button, Dimensions } from 'react-native'
+import { View, Text, TouchableHighlight, StyleSheet, TextInput, Picker, Button, Dimensions, AsyncStorage, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default class InputArea extends Component {
@@ -7,34 +7,35 @@ export default class InputArea extends Component {
     super(props)
 
     this.state = {
-      text: ''
+      text: '',
+      amt: 'plenty',
+      
     }//state
   }//constructor
 
   // static propTypes = {
-  //   addShopItem: PropTypes.func.isRequired,
-  //   deletingCount: PropTypes.number.isRequired,
-  //   deleteShopItem: PropTypes.func.isRequired
+  //   addInvItem: PropTypes.func.isRequired,
+  //   deleteInvGroup: PropTypes.func.isRequired,
+  //   checkedCount: PropTypes.number.isRequired,
   // }//proptypes
 
   addPress(){
     if(this.state.text !== '' || undefined){
-      this.props.addShopItem(this.state.text.trim())
+      this.props.addInvItem(this.state.text.trim(), this.state.amt)
       this.refs.addInput.clear()
-      this.setState({ text:'' })
     }//if
   }//addPress
 
   render(){
-    if(this.props.deletingCount !== 0){
+    if(this.props.checkedCount !== 0){
       return(
-        <TouchableHighlight onPress={() => this.props.deleteShopItem()} style={styles.areaDelete}  activeOpacity={0.3} underlayColor='#ef9a9a'>
+        <TouchableHighlight onPress={() => this.props.deleteInvGroup()} style={styles.areaDelete} activeOpacity={0.3} underlayColor='#ef9a9a'>
           <Icon name="delete" size={40} color='#fff' />
         </TouchableHighlight>
       )
     } else {
       return(
-        <View  style={styles.area} >
+        <View style={styles.area}>
           <View style={styles.input} >
             <TextInput 
               onChangeText = { (text) => this.setState({ text }) }
@@ -49,15 +50,31 @@ export default class InputArea extends Component {
               fontSize = {20}
               includeFontPadding = {false}
               textAlignVertical = 'center'
+              clearTextOnFocus= {true}
+              keyboardAppearance='default'
+              spellCheck={false}
             />
           </View>
+          <Picker 
+              ref='editAmount'
+              style={styles.picker}
+              selectedValue={this.state.amt}
+              onValueChange={(amt) => this.setState({amt})}
+              fontSize={20}
+              includeFontPadding={false}
+              mode='dropdown'
+            >
+            <Picker.Item label="Plenty" value="plenty" />
+            <Picker.Item label="Some" value="some" />
+            <Picker.Item label="None" value="none" />
+          </Picker>
           <View>
             <TouchableHighlight 
                 onPress={this.addPress.bind(this)}
-                underlayColor="#8D6E63"
+                underlayColor="#BCAAA4"
                 activeOpacity={0.3}
                 underlayColor='rgba(0,0,0,0)'
-                style={ styles.icon }
+                style={styles.addIcon}
             >
               <Icon name="add-box" size={32} color='#795548' />
             </TouchableHighlight>
@@ -79,16 +96,16 @@ const styles = StyleSheet.create ({
     paddingRight: 10,
     paddingLeft: 10,
     marginTop: 5,
+    height: 50, 
     borderBottomColor: '#d7ccc8',
     borderTopColor: '#d7ccc8',
     borderRightColor: 'rgba(0,0,0,0)',
-    borderBottomWidth: 1,
-    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    borderTopWidth: 1,
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderStyle: 'solid',
-    height: 50, 
-    width: width
+    width: width,
   },
   areaDelete: { 
     width: width, 
@@ -98,7 +115,11 @@ const styles = StyleSheet.create ({
     justifyContent: 'center'
   },
   input: {
-    borderColor: '#ddd', borderWidth: 0, width: 0.9*(width - 20)
+    borderColor: '#ddd', 
+    borderWidth: 0, 
+    width: 0.62*(width-20),
+    height: 50
   },
-  icon: {width: 0.1*(width - 20)} 
+  picker: {width: 0.3*(width-20)},
+  addIcon: { width: 0.08*(width-20) }
 })//styles

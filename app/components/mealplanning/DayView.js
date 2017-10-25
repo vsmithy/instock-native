@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, TouchableHighlight, Text, Dimensions, StyleSheet, SectionList } from 'react-native'
 import { connect } from 'react-redux'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 //The WindowLocalStorage....
 import { refDates } from '../../helpfulFiles/customItems'
@@ -65,13 +65,13 @@ class DayView extends Component {
 
         <View style={styles.dateBar}>
           <TouchableHighlight onPress={() => this.handlePrevDy()} style={ styles.dateBarLeft }   activeOpacity={0.3} underlayColor='#ddd'>
-            <MaterialCommunityIcons name='chevron-left' size={28} color='#616161' />
+            <Icon name='chevron-left' size={28} color='#616161' />
           </TouchableHighlight>
 
           <Text style={ styles.dateBarTitle }>{referenceDates.stringDayLabel}</Text>
 
           <TouchableHighlight onPress={() => this.handleNextDy()} style={ styles.dateBarRight } activeOpacity={0.3} underlayColor='#ddd'>
-            <MaterialCommunityIcons name='chevron-right' size={28} color='#616161' style={ styles.dateBarRightText } />
+            <Icon name='chevron-right' size={28} color='#616161' style={ styles.dateBarRightText } />
           </TouchableHighlight>
         </View>
 

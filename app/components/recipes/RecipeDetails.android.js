@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, BackHandler, TouchableHighlight, Image, Text, Dimensions, Button, StyleSheet, ScrollView } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { MaterialCommunityIcons, MaterialIcons, FontAwesome } from '@expo/vector-icons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 //the locals
 import * as actionCreators from '../../actions'
@@ -94,9 +94,9 @@ class RecipeDetails extends Component {
         <ScrollView style={{width: width, flex: 1, backgroundColor: '#fff'}}><View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', width: width }}>
 
           <View style={{width: width, height: 400, flex: 1, alignItems: 'center', justifyContent: 'flex-start'}} >
-              <View style={{flexDirection: 'row', height: 70, width: width, backgroundColor: '#fff', padding: 5, alignItems: 'center', justifyContent: 'flex-start'}}>
+              <View style={{flexDirection: 'row', height: 70, width: width, backgroundColor: '#F5F5F5', padding: 5, alignItems: 'center', justifyContent: 'flex-start'}}>
                 <TouchableHighlight onPress={() => this.props.navigation.goBack()}  style={ styles.dateBarLeft }   activeOpacity={0.3} underlayColor='#efebe9'>
-                  <MaterialIcons name='arrow-back' size={28} color='#616161' />
+                  <Icon name='arrow-back' size={28} color='#616161' />
                 </TouchableHighlight>
                 <Text ellipsizeMode='tail' numberOfLines={3} style={{ color: '#616161', fontSize: 20, marginLeft: 15, flex: 1 }} >{item.title}</Text>
               </View>
@@ -104,13 +104,13 @@ class RecipeDetails extends Component {
               <Image source={{uri: item.image}} style={{width: width, flex: 1}} />
 
               <TouchableHighlight style={{ alignItems:'center', justifyContent:'center', height: 60, position:'absolute', marginTop: 300, right: 50, borderRadius: 50, opacity: .75 }} onPress={() => this.handleFav(favStatus)} activeOpacity={0.3} underlayColor='#616161' >
-                <MaterialIcons name='favorite' size={60} color={favStatus === -1 ? '#fff' : '#c62828'} />
+                <Icon name='favorite' size={60} color={favStatus === -1 ? '#fff' : '#c62828'} />
               </TouchableHighlight>
           </View>
 
           <View style={{marginTop: 0, width: width, justifyContent: 'center', alignItems: 'flex-start'}}>
 
-            <View style={{width: width, backgroundColor: '#efebe9', alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', padding: 5}}>
+            <View style={{width: width, backgroundColor: '#F5F5F5', alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', padding: 5}}>
               <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
                 <Text style={{fontSize: 40}}>{item.readyInMinutes}</Text>
                 <Text style={{fontSize: 15}}>minutes</Text>
@@ -122,7 +122,7 @@ class RecipeDetails extends Component {
               <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
                 {missingItems > 0 ? 
                   <Text style={{fontSize: 40, color:'#c62828'}}>{missingItems}</Text> : 
-                  <MaterialIcons name='check' size={40} color='#00897b' />
+                  <Icon name='check' size={40} color='#00897b' />
                 }
                 <Text style={{fontSize: 15, textAlign: 'center'}}>{missingItems > 0 ? 'not inStock' : 'all items inStock'}</Text>
               </View>
@@ -158,7 +158,7 @@ class RecipeDetails extends Component {
           <View style={{width: width, height: 400, flex: 1, alignItems: 'center', justifyContent: 'flex-start'}} >
               <View style={{flexDirection: 'row', height: 70, width: width, backgroundColor: '#fff', padding: 5, alignItems: 'center', justifyContent: 'flex-start'}}>
                 <TouchableHighlight onPress={() => this.props.navigation.goBack()}  style={ styles.dateBarLeft }   activeOpacity={0.3} underlayColor='#efebe9'>
-                  <MaterialIcons name='arrow-back' size={28} color='#616161' />
+                  <Icon name='arrow-back' size={28} color='#616161' />
                 </TouchableHighlight>
                 <Text ellipsizeMode='tail' numberOfLines={3} style={{ color: '#616161', fontSize: 20, marginLeft: 15, flex: 1 }} >{item.title}</Text>
               </View>
@@ -166,7 +166,7 @@ class RecipeDetails extends Component {
               <Image source={{uri: item.image}} style={{width: width, flex: 1}} />
 
               <TouchableHighlight style={{ alignItems:'center', justifyContent:'center', height: 60, position:'absolute', marginTop: 300, right: 50, borderRadius: 50, opacity: .75 }} onPress={() => this.handleFav(favStatus)} activeOpacity={0.3} underlayColor='#616161' >
-                <MaterialIcons name='favorite' size={60} color={favStatus === -1 ? '#fff' : '#c62828'} />
+                <Icon name='favorite' size={60} color={favStatus === -1 ? '#fff' : '#c62828'} />
               </TouchableHighlight>
           </View>
 
@@ -184,7 +184,7 @@ class RecipeDetails extends Component {
               <View style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}>
                 {missingItems > 0 ? 
                   <Text style={{fontSize: 40, color:'#c62828'}}>{missingItems}</Text> : 
-                  <MaterialIcons name='check' size={40} color='#00897b' />
+                  <Icon name='check' size={40} color='#00897b' />
                 }
                 <Text style={{fontSize: 15, textAlign: 'center'}}>{missingItems > 0 ? 'not inStock' : 'all items inStock'}</Text>
               </View>

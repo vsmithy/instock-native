@@ -6,18 +6,18 @@ import ListItem from './ListItem'
 
 export default class ListArea extends Component {
   
-  static propTypes = {
-    inventory: PropTypes.array.isRequired, 
-    checkForDelete: PropTypes.func.isRequired, 
-    editInvItem: PropTypes.func.isRequired, 
-    checkedCount: PropTypes.number.isRequired, 
-    addShopItem: PropTypes.func.isRequired
-  }//proptypes
+  // static propTypes = {
+  //   inventory: PropTypes.array.isRequired, 
+  //   checkForDelete: PropTypes.func.isRequired, 
+  //   editInvItem: PropTypes.func.isRequired, 
+  //   checkedCount: PropTypes.number.isRequired, 
+  //   addShopItem: PropTypes.func.isRequired
+  // }//proptypes
 
   render(){
     const { inventory, checkForDelete, editInvItem, checkedCount, addShopItem } = this.props
     return(
-      <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', flex: 1 }}>
+      <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', flex: 1, marginBottom: 60 }}>
         {
           Object
             .keys(inventory)

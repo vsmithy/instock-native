@@ -1,15 +1,16 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Text, TextInput, TouchableHighlight, Animated, Dimensions, StyleSheet } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+// import { MaterialIcons } from '@expo/vector-icons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 class ListItem extends Component {
   state = { isEditing: false, text: '' }
 
-  static propTypes = {
-    item: PropTypes.object.isRequired,
-    editMealItem: PropTypes.func.isRequired,
-    deleteMealItem: PropTypes.func.isRequired
-  }//propTypes
+  // static propTypes = {
+  //   item: PropTypes.object.isRequired,
+  //   editMealItem: PropTypes.func.isRequired,
+  //   deleteMealItem: PropTypes.func.isRequired
+  // }//propTypes
 
   handleEditSave(){
     const { item } = this.props
@@ -51,7 +52,7 @@ class ListItem extends Component {
               underlayColor='rgba(0,0,0,0)'
               style={styles.editIcon}
             >
-                <MaterialIcons name="done" size={32} color='#00897b' />
+                <Icon name="done" size={32} color='#00897b' />
             </TouchableHighlight>
         </View>//entire row
       )//return
@@ -69,7 +70,7 @@ class ListItem extends Component {
               onPress={() => this.props.deleteMealItem(item.id)}
               style={styles.itemIcon}
               activeOpacity={0.3} underlayColor='#ddd'>
-                <MaterialIcons name={"delete"} size={32} color='#cf2a27' />
+                <Icon name={"delete"} size={32} color='#cf2a27' />
             </TouchableHighlight>
           </View>
         )//return
@@ -108,3 +109,5 @@ const styles = StyleSheet.create({
 })//styles
 
 export default ListItem
+
+

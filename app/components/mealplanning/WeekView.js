@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Dimensions, TouchableHighlight, SectionList } from 'react-native'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { View, Text, StyleSheet, Dimensions, TouchableHighlight, SectionList, Image } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
 //the locals
@@ -115,13 +115,13 @@ class WeekView extends Component {
       <View style={{flex: 1, width:width}}>
         <View style={styles.dateBar}>
           <TouchableHighlight onPress={() => this.handlePrevWk()} style={ styles.dateBarLeft }   activeOpacity={0.3} underlayColor='#ddd'>
-            <MaterialCommunityIcons name='chevron-left' size={28} color='#616161' />
+            <Icon name='chevron-left' size={28} color='#616161' />
           </TouchableHighlight>
 
           <Text style={ styles.dateBarTitle }>{referenceDates.stringWeekRange}</Text>
 
           <TouchableHighlight onPress={() => this.handleNextWk()} style={ styles.dateBarRight } activeOpacity={0.3} underlayColor='#ddd'>
-            <MaterialCommunityIcons name='chevron-right' size={28} color='#616161' style={ styles.dateBarRightText } />
+            <Icon name='chevron-right' size={28} color='#616161' style={ styles.dateBarRightText } />
           </TouchableHighlight>
         </View>
 

@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { addNavigationHelpers, StackNavigator } from 'react-navigation'
+import { Image } from 'react-native'
 import { connect } from 'react-redux'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+// import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 //the locals
 import MealPlanning from '../components/mealplanning/MealPlanning'
@@ -18,16 +19,16 @@ export const MealStack = StackNavigator({
 
 class MealNavigation extends Component { 
 
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    mealNav: PropTypes.object.isRequired
-  }//proptypes
+  // static propTypes = {
+  //   dispatch: PropTypes.func.isRequired,
+  //   mealNav: PropTypes.object.isRequired
+  // }//proptypes
 
   static navigationOptions = {
     tabBarLabel: 'Meals',
-    tabBarIcon: ({ tintColor }) => (
-      <MaterialCommunityIcons name="calendar-range" size={32} color={tintColor} />
-    )
+    // tabBarIcon: ({ tintColor }) => (
+    //   <Image source={require('../../../assets/icons/ic_check_circle_black_36dp.png')} style={{width: 32, height: 32}} />
+    // )
   }//nav options
 
   render(){

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Text, TouchableHighlight, StyleSheet, TextInput, Picker, Button, Dimensions } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+// import { MaterialIcons } from '@expo/vector-icons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default class InputArea extends Component {
   constructor(props){
@@ -11,9 +12,9 @@ export default class InputArea extends Component {
     }//state
   }//constructor
 
-  static propTypes = {
-    addMealItem: PropTypes.func.isRequired
-  }//proptypes
+  // static propTypes = {
+  //   addMealItem: PropTypes.func.isRequired
+  // }//proptypes
 
   addPress(){
     if(this.state.text !== '' || this.state.text !== ' ' ){
@@ -49,7 +50,7 @@ export default class InputArea extends Component {
                 underlayColor='rgba(0,0,0,0)'
                 style={ styles.icon }
             >
-              <MaterialIcons name="add-box" size={32} color='#80cbc4' />
+              <Icon name="add-box" size={32} color='#795548' />
             </TouchableHighlight>
           </View>
         </View>
@@ -79,7 +80,7 @@ const styles = StyleSheet.create ({
     width: width
   },
   input: {
-    borderColor: '#ddd', borderWidth: 0, width: 0.9*(width - 20)
+    borderColor: '#ddd', height: 50, borderWidth: 0, width: 0.9*(width - 20)
   },
   icon: {width: 0.1*(width - 20)} 
 })//styles

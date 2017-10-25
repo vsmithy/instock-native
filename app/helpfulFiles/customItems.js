@@ -5,7 +5,6 @@ export const duplicateRemover = (itemToCleanUp) => {
   let a = [...itemToCleanUp], r=0
 
   while(r < a.length){
-  //add another while loop??
     let v = r+1
     while(v < a.length){
       if(a[r] === a[v]){

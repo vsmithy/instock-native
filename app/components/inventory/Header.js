@@ -3,10 +3,10 @@ import { View, Dimensions, TouchableHighlight, Text, StyleSheet } from 'react-na
 
 export default class Header extends Component {
   
-  static propTypes = {
-    sortInvName: PropTypes.func.isRequired,
-    sortInvAmount: PropTypes.func.isRequired,
-  }//proptypes
+  // static propTypes = {
+  //   sortInvName: PropTypes.func.isRequired,
+  //   sortInvAmount: PropTypes.func.isRequired,
+  // }//proptypes
 
   render(){
     return (
@@ -28,9 +28,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#efebe9',
-    height: 40,
-    paddingLeft: 10
+    backgroundColor: '#f5f5f5',
+    height: 48,
+    paddingLeft: 10,
+    borderStyle: 'solid',
+    borderBottomColor: '#efebe9',
+    borderBottomWidth: 1,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
   },
   headerText: { 
     fontSize: 25

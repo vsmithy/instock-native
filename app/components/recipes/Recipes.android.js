@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View, BackHandler, StyleSheet, TouchableHighlight, Text, Image, Dimensions, ActivityIndicator, Button, AsyncStorage, TextInput  } from 'react-native'
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
+// import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -178,7 +179,7 @@ class Recipes extends Component {
                 underlayColor='rgba(0,0,0,0)'
                 style={ styles.icon }
             >
-              <MaterialIcons name="search" size={32} color='#6d4c41' />
+              <Icon name="search" size={32} color='#795548' />
             </TouchableHighlight>
           </View>
         </View>
@@ -197,10 +198,10 @@ class Recipes extends Component {
           </View>
         </TouchableHighlight>
 
-        <TouchableHighlight onPress={() => this.handleQueryRecipes('summer')} style={{width: width, flex: 1, alignItems: 'center', justifyContent: 'center'}}  >
+        <TouchableHighlight onPress={() => this.handleQueryRecipes('autumn')} style={{width: width, flex: 1, alignItems: 'center', justifyContent: 'center'}}  >
           <View style={{ width: width, flex: 1, alignItems: 'center', justifyContent: 'center' }} >
-            <Image opacity={.8} source={require('../../../assets/images/summer2.png')} style={{width: width, flex: 1}} />
-            <View style={{ backgroundColor: 'rgba(0,0,0,0.4)' ,position:'absolute', width: width, height: height/3, justifyContent: 'center'  }}><Text style={{ color: '#fff', fontSize: 35, marginLeft: 15 }} >Summer's Here!</Text></View>
+            <Image opacity={.8} source={require('../../../assets/images/soup.jpeg')} style={{width: width, flex: 1}} />
+            <View style={{ backgroundColor: 'rgba(0,0,0,0.4)' ,position:'absolute', width: width, height: height/3, justifyContent: 'center'  }}><Text style={{ color: '#fff', fontSize: 35, marginLeft: 15 }} >Hot & Hearty</Text></View>
           </View>
         </TouchableHighlight>
         </View>
@@ -211,7 +212,7 @@ class Recipes extends Component {
 
         <View style={styles.headerBar}>
           <TouchableHighlight onPress={() => this.setState({ whichView: 'first' })}  style={ styles.dateBarLeft }   activeOpacity={0.3} underlayColor='#efebe9'>
-            <MaterialIcons name='arrow-back' size={28} color='#616161' />
+            <Icon name='arrow-back' size={28} color='#616161' />
           </TouchableHighlight>
           <Text style={ styles.dateBarTitle }>Categories</Text>
         </View>
@@ -272,7 +273,7 @@ const styles = StyleSheet.create({
     height: 40,
     paddingLeft: 20,
     width: width,
-    backgroundColor: '#fff',
+    backgroundColor: '#F5F5F5',
     // marginBottom: 5
   },
   dateBarTitle: {
@@ -292,14 +293,14 @@ const styles = StyleSheet.create({
     borderBottomColor: '#d7ccc8',
     borderTopColor: '#d7ccc8',
     borderRightColor: 'rgba(0,0,0,0)',
-    borderBottomWidth: 1,
+    borderBottomWidth: 0,
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderStyle: 'solid',
     height: 50, 
     width: width,
-    backgroundColor:'#efebe9'
+    backgroundColor:'#f5f5f5'
   },
   input: {
     borderColor: '#ddd', borderWidth: 0, width: 0.9*(width - 20)

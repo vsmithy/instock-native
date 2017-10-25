@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { View, BackHandler, ListView, TouchableHighlight, Text, Dimensions, Image, StyleSheet, ScrollView, Button, RefreshControl, ActivityIndicator } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
+// import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 //the locals
 import * as actionCreators from '../../actions'
@@ -143,7 +144,7 @@ class ResultsList extends Component {
 
           <View style={styles.headerBar}>
             <TouchableHighlight onPress={() => this.props.navigation.goBack()}  style={ styles.dateBarLeft }   activeOpacity={0.3} underlayColor='#efebe9'>
-              <MaterialIcons name='arrow-back' size={28} color='#616161' />
+              <Icon name='arrow-back' size={28} color='#616161' />
             </TouchableHighlight>
             <Text style={ styles.dateBarTitle }>{resultHeader}</Text>
           </View>
@@ -158,7 +159,7 @@ class ResultsList extends Component {
                       <Text ellipsizeMode='tail' numberOfLines={2} style={{ color: '#fff', fontSize: 25, marginLeft: 15, paddingBottom: 3 }} >{item.title}</Text>
                     </View>
                     <View style={{ alignItems:'center', justifyContent:'center', height: 60, position:'absolute', marginTop: 300, right: 50 }} >
-                      <MaterialIcons name='favorite' size={60} color={this.props.favData.findIndex((favItem) => favItem.id === item.id) === -1 ? 'rgba(0,0,0,0)' : '#c62828'} />
+                      <Icon name='favorite' size={60} color={this.props.favData.findIndex((favItem) => favItem.id === item.id) === -1 ? 'rgba(0,0,0,0)' : '#c62828'} />
                     </View>
                   </View>
                 </TouchableHighlight>
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
     height: 40,
     paddingLeft: 20,
     width: width,
-    backgroundColor: '#fff',
+    backgroundColor: '#F5F5F5',
   },
   dateBarTitle: {
     fontSize: 25, 

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Text, TouchableHighlight, StyleSheet, TextInput, Picker, Dimensions } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+import { View, Text, TouchableHighlight, StyleSheet, TextInput, Picker, Dimensions, Image } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 
 /*     ***************notes and info about this component***************
@@ -33,13 +33,13 @@ export default class ListItem extends Component {
     }//state
   }//constructor
 
-  static propTypes = {
-    item: PropTypes.object.isRequired,
-    editInvItem: PropTypes.func.isRequired, 
-    addShopItem: PropTypes.func.isRequired, 
-    checkedCount: PropTypes.number.isRequired, 
-    checkForDelete: PropTypes.func.isRequired, 
-  }//proptypes
+  // static propTypes = {
+  //   item: PropTypes.object.isRequired,
+  //   editInvItem: PropTypes.func.isRequired, 
+  //   addShopItem: PropTypes.func.isRequired, 
+  //   checkedCount: PropTypes.number.isRequired, 
+  //   checkForDelete: PropTypes.func.isRequired, 
+  // }//proptypes
 
 
   handleEditSave(){
@@ -69,10 +69,11 @@ export default class ListItem extends Component {
             <Text style={styles.deleteItemAmount}>{item.amount}</Text>
           <TouchableHighlight
             onPress={() => this.props.checkForDelete(item.id)} style={styles.deleteItemIcon}  activeOpacity={0.3} underlayColor='rgba(0,0,0,0)' >
-            <MaterialIcons name={item.checked ? "remove-circle" : "radio-button-unchecked"} size={28} color='#cf2a27' />
+            
+            <Icon name={item.checked ? "remove-circle" : "radio-button-unchecked"} size={28} color='#cf2a27' />
           </TouchableHighlight>
         </View>
-      )//return
+      )//return  
     } else if(this.props.checkedCount === 0 && this.state.isEditing){
       return(
         <View style={styles.row} >
@@ -114,10 +115,11 @@ export default class ListItem extends Component {
               underlayColor='rgba(0,0,0,0)'
               style={styles.editItemIcon}
             >
-                <MaterialIcons name="done" size={28} color='#00897b' />
+                
+              <Icon name="done" size={28} color='#00897b' />
             </TouchableHighlight>
 
-        </View>//entire row
+        </View>//entire row  
       )//return
     } else {
       return(
@@ -139,10 +141,10 @@ export default class ListItem extends Component {
           <TouchableHighlight onPress={this.handleAddToShopping.bind(this)} style={styles.itemIcon}
             activeOpacity={0.3} 
             underlayColor='rgba(0,0,0,0)'>
-              <MaterialIcons name={nameVar} size={28} color={colorVar} />
+            <Icon name={nameVar} size={28} color={colorVar} />
           </TouchableHighlight>
         </View>
-      )//return
+      )//return  
     }//if
   }//render
 }//component
@@ -155,11 +157,11 @@ const styles = StyleSheet.create({
     flex: 1,
     width: width,
     justifyContent: 'flex-start',
-    height: 55,
+    height: 56,
     alignItems: 'center',
     marginTop: 5,
-    paddingRight: 10,
-    paddingLeft: 10
+    paddingRight: 16,
+    paddingLeft: 16
   },
   itemName: { fontSize: 25, width: 0.62*(width-20), color:'#616161', paddingRight: 8 },
   itemAmount: { fontSize: 25, width: 0.30*(width-20)-5, color:'#616161' },
@@ -172,14 +174,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     justifyContent: 'flex-start',
     flex: 1,
-    height: 50,
+    height: 56,
     width: width,
     alignItems: 'center',
     marginTop: 5,
-    paddingRight: 10,
+    paddingRight: 16,
     backgroundColor: '#EFEBE9',
-    paddingLeft: 10,
-    paddingTop: 10
+    paddingLeft: 16,
+    paddingTop: 0
   },
   deleteItemName: { fontSize: 25, width: 0.62*(width-20), color:'#616161', paddingRight: 8 },
   deleteItemAmount: { fontSize: 25, width: 0.30*(width-20), color:'#616161' },

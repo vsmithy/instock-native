@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableHighlight, Dimensions } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 class DetailIngredient extends Component {
   state = {
@@ -24,7 +24,7 @@ class DetailIngredient extends Component {
         <TouchableHighlight onPress={() => this.handleAddToShopping(itemName)}
           activeOpacity={0.3} 
           underlayColor='rgba(0,0,0,0)'>
-            <FontAwesome name='cart-plus' size={28} color={colorVar} />
+            <Icon name='cart-plus' size={28} color={colorVar} />
         </TouchableHighlight>
       </View> 
     )//return

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { MaterialIcons } from '@expo/vector-icons'
+// import { MaterialIcons } from '@expo/vector-icons'
 
 //the locals
 import Shopping from '../components/shopping/Shopping'
@@ -11,9 +11,9 @@ import * as actionCreators from '../actions'
 class ShoppingContainer extends Component {
   static navigationOptions = {
   tabBarLabel: 'Shopping',
-  tabBarIcon: ({ tintColor }) => (
-    <MaterialIcons name="shopping-cart" size={32} color={tintColor} />
-  )
+  // tabBarIcon: ({ tintColor }) => (
+  //   <MaterialIcons name="shopping-cart" size={32} color={tintColor} />
+  // )
 }//nav options
 
   render(){

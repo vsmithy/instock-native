@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { View, BackHandler, Button, ScrollView, Text, Dimensions, StyleSheet, TouchableHighlight } from 'react-native'
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
+// import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import { NavigationActions } from 'react-navigation'
 
 //the locals
@@ -63,7 +64,7 @@ class MealView extends Component {
 
         <View style={styles.headerBar}>
           <TouchableHighlight onPress={() => navigation.goBack()}  style={ styles.dateBarLeft }   activeOpacity={0.3} underlayColor='#ddd'>
-            <MaterialIcons name='arrow-back' size={28} color='#616161' />
+            <Icon name='arrow-back' size={28} color='#616161' />
           </TouchableHighlight>
           <Text style={ styles.dateBarTitle }>{referenceDates.stringDayLabel}</Text>
         </View>
@@ -91,7 +92,7 @@ class MealView extends Component {
         </View>
 
         <View style={{ marginBottom: 30 }}>
-          <Button title='Browse Recipes' onPress={() => this.handleRecipeNav(navigateAction) } color='#80cbc4'  />
+          <Button title='Browse Recipes' onPress={() => this.handleRecipeNav(navigateAction) } color='#795548'  />
         </View>
 
       </View>
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     height: 45,
     paddingLeft: 20,
     width: width,
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f5f5',
   },
   headerTextWeek: { width: 0.3*(width-10) },
   headerTextMonth: { width: 0.3*(width-10) },
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 40,
     padding: 10,
-    borderBottomColor: '#d7ccc8',
+    borderBottomColor: '#efebe9',
     borderRightColor: 'rgba(0,0,0,0)',
     borderBottomWidth: 1,
     borderTopWidth: 0,
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderStyle: 'solid',
     width: width,
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f5f5',
     marginBottom: 5
   },
   dateBarTitle: {
