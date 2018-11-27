@@ -1,3 +1,5 @@
+# ARCHIVED - I am not actively working on this repo anymore.
+
 # instock - a kitchen inventory and meal planning app
 Now you can have your shopping list, kitchen inventory, meal planning, and recipe searching all in one place.
 
